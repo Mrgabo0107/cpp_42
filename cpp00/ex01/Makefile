@@ -6,23 +6,31 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:29:40 by gamoreno          #+#    #+#              #
-#    Updated: 2023/05/30 22:07:25 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/05/31 18:40:36 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
+NAME		=	phonebook
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
-NAME		=	phonebook
-RM			=	rm -rf
+INCLUDE	=	-I $(HEADER)
 
+###  PATHS ###
+SRC_PATH	=	sources/
+HEADER		=	includes/
 OBJ_PATH	=	objs/
-SRC			=	main.cpp \
+
+### FILES ###
+SOURCES		=	main.cpp \
 				Contact.cpp \
 				Phonebook.cpp
-HEADER		=	Contact.hpp Phonebook.hpp
 
-OBJ			=	$(addprefix $(OBJ_PATH),$(SRC:=.o))
+### FILE MANAGEMENT ###
+SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
+OBJS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.o))
+DEPS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.d))	
+
 ### COLORS ###
 NOC         = \033[0m
 GREEN       = \033[1;32m
@@ -31,18 +39,21 @@ RED			= \033[0;31m
 
 ### RULES ###
 
-all: $(NAME)
+all: tmp $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-		@ $(CC) $(FLAGS) $(OBJ) -o $(NAME)
+
+tmp:
+		@mkdir -p $(OBJ_DIRS)
+
+$(NAME): $(OBJS)
+		@$(CC) $(FLAGS) $(INCLUDES) -o $(NAME)
 		@echo "$(GREEN) Compilation succesfully.$(NOC)"
 
-$(OBJ_PATH)/%.o: %.cpp $(HEADER)
-		@mkdir -p (OBJ_PATH)
+$(OBJ_PATH)/%.o: (SRC_PATH)%.cpp
 		@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-		@$(RM) $(OBJ_PATH) $(OBJ)
+		@$(RM) $(OBJ_PATH)
 		@echo "$(GREEN) Non-executable files removed.$(NOC)"
 	
 fclean: clean
@@ -50,5 +61,7 @@ fclean: clean
 		@echo "$(GREEN) Executable removed$(NOC)"
 
 re: fclean all
+
+RM			=	rm -rf
 
 .PHONY: all clean fclean re 
