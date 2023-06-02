@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:16:54 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/02 03:05:49 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/06/02 03:13:46 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void showContactInfo(Phonebook *phoneBook, int index)
 	Contact currContact;
 
 	currContact = phoneBook->getContact(index);
-	std::cout << "the contact number " << index + 1 \
+	std::cout << "The contact number " << index + 1 \
 	<< " has the following information:" << std::endl << std::endl;
 	std::cout << "First name: " << currContact.getFirstName() << std::endl;
 	std::cout << "Last name: " << currContact.getLastName() << std::endl;
@@ -183,12 +183,11 @@ int	selectContactMessage(Phonebook *phoneBook)
 	while(1)
 	{
 		currInput = "";
-		std::cout << std::endl << "to see all contact information type its index: ";
+		std::cout << std::endl << "To see all contact information type its index: ";
 		std::getline(std::cin, currInput);
 		if (isGoodIndex(currInput, phoneBook) == true)
 			return (static_cast<int>(currInput[0] - 48));
 	}
-	// return 0;
 }
 void	OptionSearch(Phonebook *phoneBook)
 {
