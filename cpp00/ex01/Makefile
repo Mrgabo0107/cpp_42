@@ -6,15 +6,17 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:29:40 by gamoreno          #+#    #+#              #
-#    Updated: 2023/05/31 18:40:36 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/06/01 22:43:42 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
 NAME		=	phonebook
-CC			=	c++
-FLAGS		=	-Wall -Wextra -Werror -std=c++98
-INCLUDE	=	-I $(HEADER)
+# CC			=	c++
+CC			=	g++
+FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g
+# FLAGS		=	-Wall -Wextra -Werror -std=c++98
+INCLUDES	=	-I $(HEADER)
 
 ###  PATHS ###
 SRC_PATH	=	sources/
@@ -24,7 +26,7 @@ OBJ_PATH	=	objs/
 ### FILES ###
 SOURCES		=	main.cpp \
 				Contact.cpp \
-				Phonebook.cpp
+				PhoneBook.cpp
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
@@ -43,13 +45,13 @@ all: tmp $(NAME)
 
 
 tmp:
-		@mkdir -p $(OBJ_DIRS)
+		@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJS)
-		@$(CC) $(FLAGS) $(INCLUDES) -o $(NAME)
+		@$(CC) $(FLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 		@echo "$(GREEN) Compilation succesfully.$(NOC)"
 
-$(OBJ_PATH)/%.o: (SRC_PATH)%.cpp
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 		@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
@@ -63,5 +65,7 @@ fclean: clean
 re: fclean all
 
 RM			=	rm -rf
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re 

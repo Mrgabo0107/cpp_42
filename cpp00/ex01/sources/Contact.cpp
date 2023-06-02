@@ -6,13 +6,15 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:44:57 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/05/31 20:44:58 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/06/01 23:56:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Contact.hpp"
 
 Contact::Contact()
+: _index(-1), _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), \
+_secret("")
 {
 	return;
 }
@@ -52,37 +54,51 @@ int Contact::getIndex(void) const
     return this->_index;
 }
 
-void Contact::setFirstName(std::string str)
+bool Contact::setFirstName(std::string str)
 {
+	if (str.find_first_not_of(" \t") == std::string::npos)
+		return (false);
 	this->_firstName = str;
-	return;
+	return (true);
 }
 
-void Contact::setLastName(std::string str)
+bool Contact::setLastName(std::string str)
 {
+	if (str.find_first_not_of(" \t") == std::string::npos)
+		return (false);
 	this->_lastName = str;
-	return;
+	return (true);
 }
 
-void Contact::setNickName(std::string str)
+bool Contact::setNickName(std::string str)
 {
+	if (str.find_first_not_of(" \t") == std::string::npos)
+		return (false);
 	this->_nickName = str;
-	return;
+	return (true);
 }
 
 bool Contact::setPhoneNumber(std::string number)
 {
-	std::size_t nonNumeric = number.find_first_not_of("+0123456789 ");
-	if (nonNumeric != std::string::npos)
-		return false;
+	std::string subStr;
+
+	subStr = number;
+	if(subStr[0] == '+')
+		subStr = subStr.substr(1, subStr.length() - 1);
+	std::size_t nonNumeric = subStr.find_first_not_of("0123456789 ");
+	if (nonNumeric != std::string::npos \
+	|| subStr.find_first_not_of(" \t") == std::string::npos)
+		return (false);
 	this->_phoneNumber = number;
-	return true;
+	return (true);
 }
 
-void Contact::setSecret(std::string secret)
+bool Contact::setSecret(std::string str)
 {
-	this->_secret = secret;
-	return;
+	if (str.find_first_not_of(" \t") == std::string::npos)
+		return (false);
+	this->_secret = str;
+	return (true);
 }
 
 void Contact::setIndex(int n)

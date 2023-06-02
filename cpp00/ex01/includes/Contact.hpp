@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 20:16:16 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/05/31 19:28:40 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:37:49 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ public:
 	std::string	getSecret() const;
 	int	getIndex() const;
 	
-	void	setFirstName(std::string str);
-	void	setLastName(std::string str);
-	void	setNickName(std::string str);
+	bool	setFirstName(std::string str);
+	bool	setLastName(std::string str);
+	bool	setNickName(std::string str);
 	bool	setPhoneNumber(std::string str);
-	void	setSecret(std::string str);
+	bool	setSecret(std::string str);
 	void	setIndex(int n);
 	
 private:
