@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:16:54 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/02 03:13:46 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:27:00 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ std::string truncate(std::string str)
 	return (str);
 }
 
-void	displayAvalaibleContacts(Phonebook *phonebook)
+bool	displayAvalaibleContacts(Phonebook *phonebook)
 {
 	int	numberOfContacts = phonebook->getNumberOfsetContacts();
 	int	i = 0;
@@ -130,7 +130,7 @@ void	displayAvalaibleContacts(Phonebook *phonebook)
 	{
 		std::cout << std::endl \
 		<< "Add a contact after searching for it" << std::endl;
-		return;
+		return false;
 	}
 	beginOfTable();
 	while (i < numberOfContacts)
@@ -145,7 +145,7 @@ void	displayAvalaibleContacts(Phonebook *phonebook)
 		i++;
 	}
 	std::cout << "└──────────┴──────────┴──────────┴──────────┘" << std::endl;
-	return;
+	return true;
 }
 
 bool	isGoodIndex(std::string str, Phonebook *phoneBook)
@@ -191,8 +191,8 @@ int	selectContactMessage(Phonebook *phoneBook)
 }
 void	OptionSearch(Phonebook *phoneBook)
 {
-	displayAvalaibleContacts(phoneBook);
-	showContactInfo(phoneBook, selectContactMessage(phoneBook) - 1);
+	if (displayAvalaibleContacts(phoneBook) == true)
+		showContactInfo(phoneBook, selectContactMessage(phoneBook) - 1);
 	return;
 }
 

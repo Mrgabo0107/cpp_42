@@ -6,16 +6,14 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:29:40 by gamoreno          #+#    #+#              #
-#    Updated: 2023/06/01 22:43:42 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/06/06 23:06:38by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
 NAME		=	phonebook
-# CC			=	c++
-CC			=	g++
-FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g
-# FLAGS		=	-Wall -Wextra -Werror -std=c++98
+CC			=	c++
+FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDES	=	-I $(HEADER)
 
 ###  PATHS ###
@@ -37,7 +35,6 @@ DEPS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.d))
 NOC         = \033[0m
 GREEN       = \033[1;32m
 CYAN        = \033[1;36m
-RED			= \033[0;31m
 
 ### RULES ###
 

@@ -5,22 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/29 22:43:27 by gamoreno          #+#    #+#              #
-#    Updated: 2023/06/12 03:00:31 by gamoreno         ###   ########.fr        #
+#    Created: 2023/06/12 15:53:29 by gamoreno          #+#    #+#              #
+#    Updated: 2023/06/12 15:54:35 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 ### COMPILATION ###
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
-NAME		= megaphone
+NAME		= Harl
+
 
 ### PATHS ###
 OBJ_PATH	=	objs/
 SRC_PATH	=	sources/
 
 ### FILES ###
-SOURCES		=	megaphone.cpp
+SOURCES		=	main.cpp \
+				Harl.cpp
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))

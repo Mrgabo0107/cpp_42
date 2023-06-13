@@ -5,26 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/29 22:43:27 by gamoreno          #+#    #+#              #
-#    Updated: 2023/06/12 03:00:31 by gamoreno         ###   ########.fr        #
+#    Created: 2023/06/08 23:20:05 by gamoreno          #+#    #+#              #
+#    Updated: 2023/06/12 03:01:34 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-CC			= c++
-FLAGS		= -Wall -Wextra -Werror -std=c++98
-NAME		= megaphone
+NAME		=	UnnecessaryViolence
+# CC			=	g++
+# FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g
+CC			=	c++
+FLAGS		=	-Wall -Wextra -Werror -std=c++98
+INCLUDES	=	-I $(HEADER)
 
-### PATHS ###
-OBJ_PATH	=	objs/
+###  PATHS ###
 SRC_PATH	=	sources/
+HEADER		=	includes/
+OBJ_PATH	=	objs/
 
 ### FILES ###
-SOURCES		=	megaphone.cpp
+SOURCES		=	main.cpp \
+				Weapon.cpp \
+				HumanA.cpp \
+				HumanB.cpp
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
 OBJS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.o))
+DEPS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.d))	
 
 ### COLORS ###
 NOC         = \033[0m
@@ -35,12 +43,13 @@ CYAN        = \033[1;36m
 
 all: tmp $(NAME)
 
+
 tmp:
-	@mkdir -p $(OBJ_PATH)
+		@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJS)
-		@ $(CC) $(FLAGS) $(OBJS) -o $(NAME)
-		@echo "$(GREEN) Compilation succesfully$(NOC)"
+		@$(CC) $(FLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+		@echo "$(GREEN) Compilation succesfully.$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 		@$(CC) $(FLAGS) -c $< -o $@
@@ -57,4 +66,7 @@ re: fclean all
 
 RM			=	rm -rf
 
-.PHONY:	all clean fclean re 
+-include $(DEPS)
+
+.PHONY: all clean fclean re 
+
