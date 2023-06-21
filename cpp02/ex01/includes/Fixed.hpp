@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 23:26:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/13 18:46:11 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/06/21 17:51:10 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/06/21 19:26:26 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-int main(int ac, char **av)
+# include <iostream>
+# include <string>
+
+class Fixed
 {
-	if (ac == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else
-	{
-		for (int i = 1; av[i]; i++)
-		{
-			for (int j = 0; av[i][j]; j++)
-				std::cout << std::putchar(std::toupper(av[i][j]));
-			if (i < ac - 1)
-				std::cout << ' ';
-		}
-	}
-	std::cout << std::endl;
-	return (0);
-}
+
+	public:
+
+		Fixed();
+		Fixed(const Fixed& fixed);
+		Fixed&	operator=(const Fixed &fixed );
+		~Fixed();
+
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
+		
+	private:
+		int					_rawBits;
+		static const int	_fracBits = 8;
+};
+
+#endif
