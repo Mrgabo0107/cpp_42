@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:51:10 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/22 22:04:45 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:08:08 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,51 @@
 class Fixed
 {
 	public:
-
+		//Constructors
 		Fixed();
 		Fixed(const int i);
 		Fixed(const float f);
 		Fixed(const Fixed& fixed);
-		Fixed&	operator=(const Fixed &fixed );
-		~Fixed();
 
+		//Assignement operator
+		Fixed&	operator =(const Fixed &fixed);
+		
+		//Destructor
+		~Fixed();
+		
+		//Getters
 		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
 		float	toFloat(void) const;
 		int		toInt(void) const;
+		
+		//Setter
+		void	setRawBits(const int raw);
+		
+		//Comparison operators
+		bool	operator>(const Fixed &fixed) const;
+		bool	operator<(const Fixed &fixed) const;
+		bool	operator>=(const Fixed &fixed) const;
+		bool	operator<=(const Fixed &fixed) const;
+		bool	operator==(const Fixed &fixed) const;
+		bool	operator!=(const Fixed &fixed) const;
+
+		//Aritmetic operators
+		Fixed	operator+(const Fixed &fixed) const;
+		Fixed	operator-(const Fixed &fixed) const;
+		Fixed	operator*(const Fixed &fixed) const;
+		Fixed	operator/(const Fixed &fixed) const;
+
+		//Increment and decrement
+		Fixed&	operator++(void);
+		Fixed&	operator--(void);
+		Fixed	operator++(int);
+		Fixed	operator--(int);
+		
+		//Min and Max
+		static Fixed&		min(Fixed &fixed1, Fixed &fixed2);
+		const static Fixed&	min(const Fixed &fixed1, const Fixed &fixed2);
+		static Fixed&		max(Fixed &fixed1, Fixed &fixed2);
+		const static Fixed&	max(const Fixed &fixed1, const Fixed &fixed2);
 		
 	private:
 		int					_rawBits;

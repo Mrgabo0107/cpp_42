@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 17:51:10 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/22 22:04:51 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/06/21 17:41:55 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/06/23 00:00:59 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#include <iostream>
+#include "../includes/Fixed.hpp"
+#include "../includes/Point.hpp"
 
-# include <iostream>
-# include <string>
-
-class Fixed
+int main( void )
 {
-	public:
+	Point a(-3.98f, 0.56f);
+	Point b(-4.26f, -6.8f);
+	Point c(6.56f, 1.82f);
+	Point p(-4.16f, -6.13f);
 
-		Fixed();
-		Fixed(const Fixed& fixed);
-		Fixed&	operator=(const Fixed &fixed );
-		~Fixed();
-
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
-		
-	private:
-		int					_rawBits;
-		static const int	_fracBits = 8;
-};
-
-#endif
+	if (bsp(a, b, c, p) == true)
+		std::cout << "true" << std::endl;
+	else if (bsp(a, b, c, p) == false)
+		std::cout << "false" << std::endl;
+	return 0;
+}

@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 17:51:10 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/22 22:04:51 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/06/21 17:41:55 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/06/22 20:14:23 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#include <iostream>
+#include "../includes/Fixed.hpp"
 
-# include <iostream>
-# include <string>
-
-class Fixed
+int main( void )
 {
-	public:
+	Fixed		a;
+	Fixed const	b(Fixed( 5.05f ) * Fixed( 2 ));
 
-		Fixed();
-		Fixed(const Fixed& fixed);
-		Fixed&	operator=(const Fixed &fixed );
-		~Fixed();
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
 
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
-		
-	private:
-		int					_rawBits;
-		static const int	_fracBits = 8;
-};
+	std::cout << b << std::endl;
 
-#endif
+	std::cout << Fixed::max(a, b) << std::endl;
+	return 0;
+}
