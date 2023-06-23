@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:50:52 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/06/22 23:39:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:37:56 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	if((c - a).det(point - a) * (b - a).det(point - a) >= zero)
 		return (false);
 	else if((c - b).det(point - b) * (a - b).det(point - b) >= zero)
-		return (false);
-	else if((a - c).det(point - c) * (b - c).det(point - c) >= zero)
 		return (false);
 	return (true);
 }
