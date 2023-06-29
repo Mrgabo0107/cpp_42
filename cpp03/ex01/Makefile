@@ -6,12 +6,12 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/06/26 13:32:30 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/06/26 20:33:11 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-NAME		=	clapTrap
+NAME		=	scavTrap
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDES	=	-I $(HEADER)
@@ -24,6 +24,7 @@ OBJ_PATH	=	objs/
 ### FILES ###
 SOURCES		=	main.cpp \
 				ClapTrap.cpp \
+				ScavTrap.cpp
 				
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
