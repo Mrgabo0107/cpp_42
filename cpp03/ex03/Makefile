@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/06/30 00:09:01 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/07/03 14:07:35 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SOURCES		=	main.cpp \
 				ClapTrap.cpp \
 				FragTrap.cpp \
 				ScavTrap.cpp \
+				DiamondTrap.cpp
 				
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
