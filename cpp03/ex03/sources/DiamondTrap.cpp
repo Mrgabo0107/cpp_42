@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/04 15:39:19 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/07/04 19:30:08 by gamoreno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/DiamondTrap.hpp"
 
 /*
@@ -5,32 +17,30 @@
 */
 
 DiamondTrap::DiamondTrap() : ClapTrap("DiamondDefault_clap_name"), \
-FragTrap("DiamondDefault"), ScavTrap("DiamondDefault")
+FragTrap("DiamondDefault_clap_name"), ScavTrap("DiamondDefault_clap_name")
 {
-	this->setName("DiamondDefault");
-	this->setHitPoint(FragTrap::getHitPoint());
-	this->setEnergyPoint(ScavTrap::getEnergyPoint());
-	this->setAttackDamage(FragTrap::getAttackDamage());
+	DiamondTrap::setName("DiamondDefault");
+	FragTrap::setHitPoint(100);
+	ScavTrap::setEnergyPoint(50);
+	FragTrap::setAttackDamage(30);
 	std::cout << "A new DiamondDefault DiamondTrap was born" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string newName) : ClapTrap(newName + "_clap_name"), \
-FragTrap(newName), ScavTrap(newName)
+DiamondTrap::DiamondTrap(const std::string &newName) : ClapTrap(newName + "_clap_name"), \
+FragTrap(newName + "_clap_name"), ScavTrap(newName + "_clap_name")
 {
-	this->setName(newName);
-	this->setHitPoint(FragTrap::getHitPoint());
-	this->setEnergyPoint(ScavTrap::getEnergyPoint());
-	this->setAttackDamage(FragTrap::getAttackDamage());
+	DiamondTrap::setName(newName);
+	FragTrap::setHitPoint(100);
+	ScavTrap::setEnergyPoint(50);
+	FragTrap::setAttackDamage(30);
 	std::cout << "A new " << newName << " DiamondTrap was born" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &src)
-: ClapTrap(src.getName() + "_clap_name"), FragTrap(src.getName()), \
-ScavTrap(src.getName())
 {
+	*this = src;
 	std::cout << "A new DiamondTrap was born as copy of " << src.getName() \
 	<< std::endl;
-	*this = src;
 }
 
 
@@ -52,10 +62,11 @@ DiamondTrap&	DiamondTrap::operator=(DiamondTrap const &rhs)
 {
 	if (this != &rhs)
 	{
-		this->setName(rhs.getName());
-		this->setHitPoint(rhs.getHitPoint());
-		this->setEnergyPoint(rhs.getEnergyPoint());
-		this->setAttackDamage(rhs.getAttackDamage());
+		this->_name = rhs._name;
+		this->_hitPoint = rhs._hitPoint;
+		this->_energyPoint = rhs._energyPoint;
+		this->_attackDamage = rhs._attackDamage;
+		this->ClapTrap::setName(rhs.ClapTrap::getName());
 	}
 	return *this;
 }
@@ -75,7 +86,9 @@ std::ostream&	operator<<(std::ostream &o, DiamondTrap const &i)
 */
 void DiamondTrap::attack(const std::string &target)
 {
+	ScavTrap::setAttackDamage(20);
 	ScavTrap::attack(target);
+	FragTrap::setAttackDamage(30);
 	return;
 }
 
@@ -99,6 +112,14 @@ void DiamondTrap::whoAmI(void)
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+std::string		DiamondTrap::getName(void) const
+{
+	return(this->_name);
+}
 
-
+void			DiamondTrap::setName(std::string newName)
+{
+	this->_name = newName;
+	return;
+}
 /* ************************************************************************** */
