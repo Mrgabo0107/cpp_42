@@ -3,8 +3,9 @@
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
-AForm::AForm(const std::string name, const unsigned int gradeToSign, const unsigned int gradeToExecute);
-:_name(name), _isSigned(false)
+AForm::AForm(const std::string name, const std::string target, \
+const unsigned int gradeToSign, const unsigned int gradeToExecute);
+:_name(name), _target(target) _isSigned(false)
 {
 	if (gradeToSign < 1 || gradeToExecute < 1)
 		throw AForm::GradeTooHighException();
@@ -18,7 +19,7 @@ AForm::AForm(const std::string name, const unsigned int gradeToSign, const unsig
 }
 
 AForm::AForm(const AForm & src)
-:_name(src._name), _isSigned(src._isSigned)
+:_name(src._name), _target(src._target), _isSigned(src._isSigned)
 {
 	if (src.gradeToSign < 1 || src.gradeToExecute < 1)
 		throw AForm::GradeTooHighException();
@@ -46,6 +47,7 @@ AForm &AForm::operator=(AForm const &rhs)
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();
+		this->_target = rhs.getTarget();
 		this->_isSigned = rhs.isSigned();
 		this->_gradeToSign = rhs.gradeToSign();
 		this->_gradeToExecute = rhs.getGradeToExecute();
@@ -68,6 +70,8 @@ void AForm::beSigned(const Bureaucrat &candidate);
 	else
 		throw AForm::AlreadySignedException();
 }
+		void				execute(Bureaucrat const &executor) const;
+		virtual void		action() const = 0;
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
@@ -75,6 +79,11 @@ void AForm::beSigned(const Bureaucrat &candidate);
 const std::string	&AForm::getName() const
 {
 	return(this->_name);
+}
+
+const std::string	&AForm::getTarget() const
+{
+	return(this->_target);
 }
 
 const bool			&AForm::isSigned() const
@@ -117,9 +126,10 @@ const char* AForm::AlreadySignedException::what() const throw()
 std::ostream &operator<<(std::ostream &o, AForm const &i)
 {
 	o << "The AForm: " << i.getName() << ", with grade to sign:\n"
-	<< i.getGradeToSign() << " and grade to execute:\n"
-	<< i.gradeToExecute() << std::endl;
-	if (i.isSigned)
+	<< i.getGradeToSign() << ", grade to execute:\n"
+	<< i.getGradeToExecute() << " and target:\n";
+	<< i.getTarget() << std::endl;
+	if (i.isSigned())
 		o << "is signed." << std::endl;
 	else
 		o << "is not signed." << std::endl;

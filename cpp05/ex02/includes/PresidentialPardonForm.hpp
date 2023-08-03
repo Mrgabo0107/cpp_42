@@ -5,7 +5,7 @@
 # include <string>
 # include "Form.hpp"
 
-class PresidentialPardonForm
+class PresidentialPardonForm : public AForm
 {
 
 	public:

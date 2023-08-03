@@ -5,7 +5,7 @@
 # include <string>
 # include "Form.hpp"
 
-class ShrubberyCreationForm
+class ShrubberyCreationForm : public AForm
 {
 
 	public:

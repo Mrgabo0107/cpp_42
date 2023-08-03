@@ -5,7 +5,7 @@
 # include <string>
 # include "Form.hpp"
 
-class RobotomyRequestForm
+class RobotomyRequestForm : public AForm
 {
 
 	public:

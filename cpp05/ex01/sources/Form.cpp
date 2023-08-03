@@ -56,7 +56,7 @@ Form &Form::operator=(Form const &rhs)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void Form::beSigned(const Bureaucrat &candidate);
+void Form::beSigned(Bureaucrat const &candidate) const;
 {
 	if (!this->_signed)
 	{
@@ -118,8 +118,8 @@ std::ostream &operator<<(std::ostream &o, Form const &i)
 {
 	o << "The form: " << i.getName() << ", with grade to sign:\n"
 	<< i.getGradeToSign() << " and grade to execute:\n"
-	<< i.gradeToExecute() << std::endl;
-	if (i.isSigned)
+	<< i.getGradeToExecute() << std::endl;
+	if (i.isSigned())
 		o << "is signed." << std::endl;
 	else
 		o << "is not signed." << std::endl;
