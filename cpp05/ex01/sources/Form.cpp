@@ -6,6 +6,7 @@
 
 Form::Form()
 {
+	hola
 }
 
 Form::Form( const Form & src )
