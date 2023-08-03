@@ -73,7 +73,7 @@ void	Bureaucrat::downGrade()
 		this->_grade += 1;
 }
 
-void Bureaucrat::signForm(Form& form)
+void	Bureaucrat::signForm(Form& form)
 {
 	try
 	{
