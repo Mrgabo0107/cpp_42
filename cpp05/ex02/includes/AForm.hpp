@@ -23,6 +23,11 @@ class AForm
 		const bool			&isSigned() const;
 		const unsigned int	&getGradeToSign() const;
 		const unsigned int	&getGradeToExecute() const;
+		void setName(std::string name) const;
+		void setTarget(std::string target) const;
+		void setSigned(bool isSigned);
+		void setGradeToSign(unsigned int gradeToSign) const;
+		void setGradeToExecute(unsigned int gradeToExecute) const;
 		
 		void				beSigned(Bureaucrat const &candidate) const;
 		void				execute(Bureaucrat const &executor) const;
@@ -39,6 +44,11 @@ class AForm
 				virtual const char* what() const throw();
 		};
 		class AlreadySignedException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+		class notSignedException : public std::exception
 		{
 			public:
 				virtual const char* what() const throw();

@@ -3,54 +3,43 @@
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
-
-PresidentialPardonForm::PresidentialPardonForm()
-{
-	hola
-}
+PresidentialPardonForm::PresidentialPardonForm(std::string target)
+: AForm("PresidentialPardonForm", target, 25, 5)
+{}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src)
-{
-}
-
+: AForm("PresidentialPardonForm", src.getTarget(), 25, 5)
+{}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
-
 PresidentialPardonForm::~PresidentialPardonForm()
-{
-}
-
+{}
 
 /*
-** --------------------------------- OVERLOAD ---------------------------------
+** --------------------------------- ASSIGN ---------------------------------
 */
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &rhs)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if (this != &rhs)
+	{
+		this->AForm::setName(rhs.AForm::getName());
+		this->AForm::setTarget(rhs.AForm::getTarget());
+		this->AForm::setSigned(rhs.AForm::getisSigned());
+		this->AForm::setGradeToSign(rhs.AForm::getGradeToSign());
+		this->AForm::setGradeToExecute(rhs.AForm::getGradeToExecute());
+	}
 	return *this;
 }
-
-std::ostream &operator<<(std::ostream &o, PresidentialPardonForm const &i)
-{
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
-
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
+void		PresidentialPardonForm::action() const
+{
+	std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+}
 
 /* ************************************************************************** */

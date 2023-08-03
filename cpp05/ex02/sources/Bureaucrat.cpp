@@ -57,7 +57,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void	Bureaucrat::upGrade()
+void	Bureaucrat::upGrade() const
 {
 	if (this->_grade - 1 <= 0)
 		throw Bureaucrat::GradeTooHighException();
@@ -65,7 +65,7 @@ void	Bureaucrat::upGrade()
 		this->_grade -= 1;
 }
 
-void	Bureaucrat::downGrade()
+void	Bureaucrat::downGrade() const
 {
 	if (this->_grade + 1 >= 151)
 		throw Bureaucrat::GradeTooLowException();
@@ -73,7 +73,7 @@ void	Bureaucrat::downGrade()
 		this->_grade += 1;
 }
 
-void	Bureaucrat::signAForm(AForm& AForm)
+void	Bureaucrat::signAForm(AForm& AForm) const
 {
 	try
 	{
@@ -85,6 +85,20 @@ void	Bureaucrat::signAForm(AForm& AForm)
 		std::cerr << *this << " cannot sign " << AForm << " because " << e.what() << std::endl;
 	}
 	
+}
+
+void	Bureaucrat::executeForm(const AForm& form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->_name << " couldn't execute " << form.getName() \
+				  << " because " << e.what() << std::endl;
+	}
 }
 
 /*

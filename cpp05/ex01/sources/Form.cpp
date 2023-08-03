@@ -97,12 +97,12 @@ const unsigned int	&Form::getGradeToExecute() const
 */
 const char* Form::GradeTooLowException::what() const throw() 
 {
-	return ("Grade is to low.");
+	return ("Grade is too low.");
 }
 
 const char* Form::GradeTooHighException::what() const throw() 
 {
-	return ("Grade is to high.");
+	return ("Grade is too high.");
 }
 
 const char* Form::AlreadySignedException::what() const throw() 

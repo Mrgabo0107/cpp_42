@@ -70,8 +70,16 @@ void AForm::beSigned(const Bureaucrat &candidate);
 	else
 		throw AForm::AlreadySignedException();
 }
-		void				execute(Bureaucrat const &executor) const;
-		virtual void		action() const = 0;
+
+void AForm::execute(Bureaucrat const &executor) const;
+{
+	if (!this->_isSigned)
+		throw AForm::notSignedException();
+	else if (this->_gradeToExecute < executor.getGrade())
+		throw AForm::GradeTooLowException();
+	else
+		this->action();
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
@@ -101,22 +109,52 @@ const unsigned int	&AForm::getGradeToExecute() const
 	return(this->gradeToExecute);
 }
 
+void setName(std::string name) const
+{
+	this->_name = name;
+}
+
+void setTarget(std::string target) const
+{
+	this->_target = target;
+}
+
+void setSigned(bool isSigned)
+{
+	this->_isSigned = isSigned;
+}
+
+void setGradeToSign(unsigned int gradeToSign) const
+{
+	this->_gradeToSign = gradeToSign;
+}
+
+void setGradeToExecute(unsigned int gradeToExecute) const
+{
+	this->_gradeToExecute = gradeToExecute;
+}
+
 /*
 ** --------------------------------- EXCEPTIONS ---------------------------------
 */
 const char* AForm::GradeTooLowException::what() const throw() 
 {
-	return ("Grade is to low.");
+	return ("Grade is too low.");
 }
 
 const char* AForm::GradeTooHighException::what() const throw() 
 {
-	return ("Grade is to high.");
+	return ("Grade is too high.");
 }
 
 const char* AForm::AlreadySignedException::what() const throw() 
 {
-	return ("AForm is already signed");
+	return ("Form is already signed");
+}
+
+const char* AForm::notSignedException::what() const throw() 
+{
+	return ("Form is not signed");
 }
 
 /*

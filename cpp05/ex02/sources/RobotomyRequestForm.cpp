@@ -4,53 +4,51 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-RobotomyRequestForm::RobotomyRequestForm()
-{
-	hola
-}
+RobotomyRequestForm::RobotomyRequestForm(std::string target)
+: AForm("PresidentialPardonForm", target, 72, 45)
+{}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
-{
-}
-
+: AForm("PresidentialPardonForm", src.getTarget(), 72, 45)
+{}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
 RobotomyRequestForm::~RobotomyRequestForm()
-{
-}
-
+{}
 
 /*
-** --------------------------------- OVERLOAD ---------------------------------
+** --------------------------------- ASSIGN ---------------------------------
 */
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &rhs)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if (this != &rhs)
+	{
+		this->AForm::setName(rhs.AForm::getName());
+		this->AForm::setTarget(rhs.AForm::getTarget());
+		this->AForm::setSigned(rhs.AForm::getisSigned());
+		this->AForm::setGradeToSign(rhs.AForm::getGradeToSign());
+		this->AForm::setGradeToExecute(rhs.AForm::getGradeToExecute());
+	}
 	return *this;
 }
-
-std::ostream &operator<<(std::ostream &o, RobotomyRequestForm const &i)
-{
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+virtual void	RobotomyRequestForm::action() const
+{
+	std::srand(static_cast<unsigned int>(std::time(0)));
+	std::cout << "Drillig noises..." << std::endl;
+	if (std::rand() % 2)
+		std::cout << this->getTarget() << " has been robotomized successfully" << std::endl;
+	else
+		std::cout << "robotomy failed" << std::endl;
+}
 
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
 
 
 /* ************************************************************************** */

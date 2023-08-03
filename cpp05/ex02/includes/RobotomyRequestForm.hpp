@@ -3,21 +3,18 @@
 
 # include <iostream>
 # include <string>
-# include "Form.hpp"
+# include <cstdlib>
+# include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
 {
-
 	public:
 
-		RobotomyRequestForm();
+		RobotomyRequestForm(std::string target);
 		RobotomyRequestForm(const RobotomyRequestForm &src);
-		~RobotomyRequestForm();
+		virtual ~RobotomyRequestForm();
 
 		RobotomyRequestForm &operator=(RobotomyRequestForm const &rhs);
 
-	private:
-
+		virtual void	action() const;
 };
-
-std::ostream &operator<<(std::ostream &o, RobotomyRequestForm const &i);

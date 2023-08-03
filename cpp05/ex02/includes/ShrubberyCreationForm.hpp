@@ -3,21 +3,18 @@
 
 # include <iostream>
 # include <string>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 class ShrubberyCreationForm : public AForm
 {
 
 	public:
 
-		ShrubberyCreationForm();
+		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm &src);
-		~ShrubberyCreationForm();
+		virtual ~ShrubberyCreationForm();
 
 		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
 
-	private:
-
+		virtual void	action() const;
 };
-
-std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &i);
