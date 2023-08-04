@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:13:09 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/02 18:34:44 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:27:19 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void	Bureaucrat::upGrade() const
+void	Bureaucrat::upGrade()
 {
 	if (this->_grade - 1 <= 0)
 		throw Bureaucrat::GradeTooHighException();
@@ -65,7 +65,7 @@ void	Bureaucrat::upGrade() const
 		this->_grade -= 1;
 }
 
-void	Bureaucrat::downGrade() const
+void	Bureaucrat::downGrade()
 {
 	if (this->_grade + 1 >= 151)
 		throw Bureaucrat::GradeTooLowException();

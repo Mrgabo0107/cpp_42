@@ -1,15 +1,29 @@
-#include "Cat.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 01:22:59 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/07/06 02:00:16 by gamoreno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/Cat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat()
+Cat::Cat() : Animal("Cat")
 {
+	std::cout << "Cat created" << std::endl;
 }
 
-Cat::Cat( const Cat & src )
+Cat::Cat(const Cat &src) : Animal(src)
 {
+	std::cout << "Cat created as a copy" << std::endl;
 }
 
 
@@ -19,6 +33,7 @@ Cat::Cat( const Cat & src )
 
 Cat::~Cat()
 {
+	std::cout << "Cat object destroyed" << std::endl;
 }
 
 
@@ -26,26 +41,23 @@ Cat::~Cat()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Cat &				Cat::operator=( Cat const & rhs )
+Cat&	Cat::operator=(const Cat &rhs)
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if (this != &rhs)
+	{
+		this->_type = rhs.getType();
+	}
 	return *this;
 }
-
-std::ostream &			operator<<( std::ostream & o, Cat const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void Cat::makeSound() const
+{
+	std::cout << "Cat: (cat purring)" << std::endl;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

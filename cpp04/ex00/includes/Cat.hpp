@@ -1,24 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 01:22:57 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/07/06 06:03:14 by gamoreno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAT_HPP
 # define CAT_HPP
 
 # include <iostream>
 # include <string>
+# include "Animal.hpp"
 
-class Cat
+class Cat : public Animal
 {
 
 	public:
-
+		//Constructors
 		Cat();
-		Cat( Cat const & src );
+		Cat(const Cat &src);
+		
+		//Destructor
 		~Cat();
 
-		Cat &		operator=( Cat const & rhs );
+		//Assignation
+		Cat&	operator=(const Cat &rhs);
 
-	private:
+		//Methods
+		void	makeSound() const;
 
 };
-
-std::ostream &			operator<<( std::ostream & o, Cat const & i );
 
 #endif /* ************************************************************* CAT_H */

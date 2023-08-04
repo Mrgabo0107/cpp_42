@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/04 18:11:50 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/08/04 18:19:28 by gamoreno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Form.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
-Form::Form(const std::string name, const unsigned int gradeToSign, const unsigned int gradeToExecute);
+Form::Form(const std::string name, const unsigned int gradeToSign, const unsigned int gradeToExecute)
 :_name(name), _isSigned(false)
 {
 	if (gradeToSign < 1 || gradeToExecute < 1)
@@ -20,9 +32,9 @@ Form::Form(const std::string name, const unsigned int gradeToSign, const unsigne
 Form::Form(const Form & src)
 :_name(src._name), _isSigned(src._isSigned)
 {
-	if (src.gradeToSign < 1 || src.gradeToExecute < 1)
+	if (src._gradeToSign < 1 || src._gradeToExecute < 1)
 		throw Form::GradeTooHighException();
-	else if (src.gradeToSign > 150 || src.gradeToExecute > 150)
+	else if (src._gradeToSign > 150 || src._gradeToExecute > 150)
 		throw Form::GradeTooLowException();
 	else
 	{
@@ -47,7 +59,7 @@ Form &Form::operator=(Form const &rhs)
 	{
 		this->_name = rhs.getName();
 		this->_isSigned = rhs.isSigned();
-		this->_gradeToSign = rhs.gradeToSign();
+		this->_gradeToSign = rhs.getGradeToSign();
 		this->_gradeToExecute = rhs.getGradeToExecute();
 	}
 	return *this;
@@ -56,12 +68,12 @@ Form &Form::operator=(Form const &rhs)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void Form::beSigned(Bureaucrat const &candidate) const;
+void Form::beSigned(Bureaucrat const &candidate)
 {
-	if (!this->_signed)
+	if (!this->_isSigned)
 	{
-		if (candidate.getGrade() <= this->_gradeSign)
-			this->_signed = true;
+		if (candidate.getGrade() <= this->_gradeToSign)
+			this->_isSigned = true;
 		else
 			throw Form::GradeTooLowException();
 	}
@@ -84,12 +96,12 @@ const bool			&Form::isSigned() const
 
 const unsigned int	&Form::getGradeToSign() const
 {
-	return(this->gradeToSign);
+	return(this->_gradeToSign);
 }
 
 const unsigned int	&Form::getGradeToExecute() const
 {
-	return(this->gradeToExecute);
+	return(this->_gradeToExecute);
 }
 
 /*
