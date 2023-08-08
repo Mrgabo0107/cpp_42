@@ -5,11 +5,11 @@
 */
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-: AForm("PresidentialPardonForm", target, 72, 45)
+: AForm("RobotomyRequestForm", target, 72, 45)
 {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
-: AForm("PresidentialPardonForm", src.getTarget(), 72, 45)
+: AForm(src)
 {}
 
 /*
@@ -41,9 +41,9 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &r
 */
 void	RobotomyRequestForm::action() const
 {
-	std::srand(static_cast<unsigned int>(time(0)));
 	std::cout << "Drillig noises..." << std::endl;
-	if (std::rand() % 2)
+	unsigned int i = (unsigned int)std::rand();
+	if (i % 2)
 		std::cout << this->getTarget() << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "robotomy failed" << std::endl;

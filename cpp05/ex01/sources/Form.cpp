@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:11:50 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/04 18:19:28 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:28:34 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Form::Form(const std::string name, const unsigned int gradeToSign, const unsigne
 }
 
 Form::Form(const Form & src)
-:_name(src._name), _isSigned(src._isSigned)
+:_name(src.getName()), _isSigned(src.isSigned())
 {
 	if (src._gradeToSign < 1 || src._gradeToExecute < 1)
 		throw Form::GradeTooHighException();
@@ -38,8 +38,8 @@ Form::Form(const Form & src)
 		throw Form::GradeTooLowException();
 	else
 	{
-		this->_gradeToSign = src._gradeToSign;
-		this->_gradeToExecute = src._gradeToExecute;
+		this->_gradeToSign = src.getGradeToSign();
+		this->_gradeToExecute = src.getGradeToExecute();
 	}
 }
 
@@ -128,8 +128,8 @@ const char* Form::AlreadySignedException::what() const throw()
 
 std::ostream &operator<<(std::ostream &o, Form const &i)
 {
-	o << "The form: " << i.getName() << ", with grade to sign:\n"
-	<< i.getGradeToSign() << " and grade to execute:\n"
+	o << "The form: \"" << i.getName() << "\", \nwith grade to sign: "
+	<< i.getGradeToSign() << "\nand grade to execute: "
 	<< i.getGradeToExecute() << std::endl;
 	if (i.isSigned())
 		o << "is signed." << std::endl;

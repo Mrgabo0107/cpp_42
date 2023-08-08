@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:53:42 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/04 17:08:52 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:31:47 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ AForm::AForm(const std::string name, const std::string target, \
 const unsigned int gradeToSign, const unsigned int gradeToExecute)
 :_name(name), _target(target), _isSigned(false)
 {
-	if (_gradeToSign < 1 || _gradeToExecute < 1)
+	if (gradeToSign < 1 || gradeToExecute < 1)
 		throw AForm::GradeTooHighException();
-	else if (_gradeToSign > 150 || _gradeToExecute > 150)
+	else if (gradeToSign > 150 || gradeToExecute > 150)
 		throw AForm::GradeTooLowException();
 	else
 	{
@@ -30,8 +30,8 @@ const unsigned int gradeToSign, const unsigned int gradeToExecute)
 	}
 }
 
-AForm::AForm(const AForm & src)
-:_name(src._name), _target(src._target), _isSigned(src._isSigned)
+AForm::AForm(const AForm &src)
+:_name(src.getName()), _target(src.getTarget()), _isSigned(src.isSigned())
 {
 	if (src._gradeToSign < 1 || src._gradeToExecute < 1)
 		throw AForm::GradeTooHighException();
@@ -39,8 +39,8 @@ AForm::AForm(const AForm & src)
 		throw AForm::GradeTooLowException();
 	else
 	{
-		this->_gradeToSign = src._gradeToSign;
-		this->_gradeToExecute = src._gradeToExecute;
+		this->_gradeToSign = src.getGradeToSign();
+		this->_gradeToExecute = src.getGradeToExecute();
 	}
 }
 
@@ -175,9 +175,9 @@ const char* AForm::notSignedException::what() const throw()
 
 std::ostream &operator<<(std::ostream &o, AForm const &i)
 {
-	o << "The AForm: " << i.getName() << ", with grade to sign:\n"
-	<< i.getGradeToSign() << ", grade to execute:\n"
-	<< i.getGradeToExecute() << " and target:\n"
+	o << "The AForm: " << i.getName() << "\nwith grade to sign: "
+	<< i.getGradeToSign() << "\ngrade to execute: "
+	<< i.getGradeToExecute() << "\nand target: "
 	<< i.getTarget() << std::endl;
 	if (i.isSigned())
 		o << "is signed." << std::endl;

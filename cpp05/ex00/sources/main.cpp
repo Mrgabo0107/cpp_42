@@ -1,66 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 18:41:51 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/08/08 19:22:38 by gamoreno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 int main()
 {
-    Bureaucrat* bureaucrat = new Bureaucrat("Bob", 2);
-    Bureaucrat* stagiaire = new Bureaucrat("Cafe", 149);
-    
-    // Test --
-    try
-    {
-        std::cout << *bureaucrat;
-        bureaucrat->upGrade();
-        std::cout << bureaucrat->getName() << " upgraded ! Felicitations! " << std::endl;
-        std::cout << *bureaucrat;
-        bureaucrat->upGrade();
-        std::cerr << "[+][1] Exception does'nt work nicely. " << std::endl;
-    }
-    catch (std::exception & e)
-    {
-        std::cerr << "[1] Exception : " << e.what() << std::endl;
-    }
+	Bureaucrat* toHigh;
+	Bureaucrat* toLow;
 
-    // Test ++
-    try
-    {
-        std::cout << *stagiaire;
-        stagiaire->downGrade();
-        std::cout << stagiaire->getName() << " downgraded ! That's suck! " << std::endl;
-        std::cout << *stagiaire;
-        stagiaire->downGrade();
-        std::cerr << "[+][2] Exception does'nt work nicely. " << std::endl;
-    }
-    catch (std::exception & e)
-    {
-        std::cerr << "[2] Exception : " << e.what() << std::endl;
-    }
+	std::cout << "----------------------------------------------" 
+	<< "\nTest high declaration:\n" 
+	<< "----------------------------------------------"<< std::endl;
+	try
+	{
+		toHigh = new Bureaucrat("ToHigh", 0);
+		std::cerr << "Exception does'nt work nicely." << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << "Expected exception: " << e.what() << std::endl;
+	}
+	std::cout << "\n----------------------------------------------" 
+	<< "\nTest low declaration:\n"
+	<< "----------------------------------------------"<< std::endl;
+	try
+	{
+		toLow = new Bureaucrat("ToLow", 420);
+		std::cerr << "Exception does'nt work nicely." << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << "Expected exception: " << e.what() << std::endl;
+	}
+	(void) toHigh;
+	(void) toLow;
 
-    Bureaucrat* toHigh;
-    Bureaucrat* toLow;
+	Bureaucrat* bureaucrat = new Bureaucrat("Gabo", 2);
+	Bureaucrat* stagiaire = new Bureaucrat("Pepe", 149);
 
-    // Test ToHigh
-    try
-    {
-        toHigh = new Bureaucrat("ToHigh", 0);
-        std::cerr << "[+][3] Exception does'nt work nicely. " << std::endl;
-    }
-    catch (std::exception & e)
-    {
-        std::cerr << "[3] Exception : " << e.what() << std::endl;
-    }
-    
-    try
-    {
-        toLow = new Bureaucrat("ToLow", 420);
-        std::cerr << "[+][4] Exception does'nt work nicely. " << std::endl;
-    }
-    catch (std::exception & e)
-    {
-        std::cerr << "[4] Exception : " << e.what() << std::endl;
-    }
-    
-    (void) toHigh;
-    (void) toLow;
-    delete bureaucrat;
-    delete stagiaire;
+	std::cout << "\n----------------------------------------------" 
+	<< "\nTest valid and invalid upgrade:\n"
+	<< "----------------------------------------------"<< std::endl;
+	try
+	{
+		std::cout << *bureaucrat;
+		bureaucrat->upGrade();
+		std::cout << bureaucrat->getName() << " upgraded!" << std::endl;
+		std::cout << *bureaucrat;
+		bureaucrat->upGrade();
+		std::cerr << "Exception does'nt work nicely. " << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << "Expected exception: " << e.what() << std::endl;
+	}
+	std::cout << "\n----------------------------------------------" 
+	<< "\nTest valid and invalid downgrade:\n"
+	<< "----------------------------------------------"<< std::endl;
+	try
+	{
+		std::cout << *stagiaire;
+		stagiaire->downGrade();
+		std::cout << stagiaire->getName() << " downgraded!" << std::endl;
+		std::cout << *stagiaire;
+		stagiaire->downGrade();
+		std::cerr << "Exception does'nt work nicely. " << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << "Expected exception: " << e.what() << std::endl;
+	}
+	delete bureaucrat;
+	delete stagiaire;
+	return (0);
 }

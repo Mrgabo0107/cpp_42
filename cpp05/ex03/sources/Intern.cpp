@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 22:01:07 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/07 22:15:21 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/09 00:45:48 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Intern::~Intern()
 */
 Intern &Intern::operator=(Intern const &rhs)
 {
-	(void)rhc; 
+	(void)rhs; 
 	return *this;
 }
 
@@ -66,8 +66,7 @@ AForm	*Intern::makeForm(std::string form, std::string target)
 		return (new RobotomyRequestForm(target));
 		break;
 	default:
-		std::cout << "Intern cannot find form." << std::endl;
-		return (nullptr);
+		throw std::invalid_argument("No form was created, please enter one of these options:\n\"Shrubbery\", \"Presidential\" or \"Robotomy\".");
 		break;
 	}
 }

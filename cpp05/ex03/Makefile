@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/04 19:15:32 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/09 00:28:57 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SOURCES		=	main.cpp \
 				Bureaucrat.cpp \
 				ShrubberyCreationForm.cpp \
 				RobotomyRequestForm.cpp \
-				PresidentialPardonForm.cpp
+				PresidentialPardonForm.cpp \
+				Intern.cpp
 				
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
@@ -60,6 +61,7 @@ clean:
 	
 fclean: clean
 		@$(RM) $(NAME)
+		@$(RM) *_shrubbery
 		@echo "$(GREEN) Executable removed$(NOC)"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:13:09 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/04 17:16:46 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:42:59 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void	Bureaucrat::signAForm(AForm& AForm) const
 	try
 	{
 		AForm.beSigned(*this);
-		std::cout << *this << " signed " << AForm << std::endl;
+		std::cout << this->getName() << " signed " << AForm.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << *this << " cannot sign " << AForm << " because " << e.what() << std::endl;
+		std::cerr << this->getName() << " cannot sign " << AForm.getName() << " because " << e.what() << std::endl;
 	}
 	
 }
@@ -133,7 +133,7 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &i)
 {
-	o << i.getName() << ", bureaucrat grade" << i.getGrade() << std::endl;
+	o << i.getName() << ", bureaucrat grade " << i.getGrade() << std::endl;
 	return o;
 }
 

@@ -8,7 +8,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src)
-: AForm("PresidentialPardonForm", src.getTarget(), 25, 5)
+: AForm(src)
 {}
 
 /*

@@ -11,7 +11,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src)
-: AForm("ShrubberyCreationForm", src.getTarget(), 145, 137)
+: AForm(src)
 {
 }
 
@@ -64,7 +64,7 @@ void	ShrubberyCreationForm::action() const
 		<<"   `&%\\ ` /%&'    |.|        \\ '|8'\n"
 		<<"       |o|        | |         | |\n"
 		<<"       |.|        | |         | |\n"
-		<<"    \\/ ._\\______/  ,\\_______/.  \\___ \n"
+		<<"     \\/ ._\\______/  ,\\_______/.  \\___ \n"
 		<< std::endl;
     	outfile.close();
 	}

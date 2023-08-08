@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:25:25 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/02 18:10:10 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:59:48 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ class Bureaucrat
 		const std::string	&getName() const;
 		const unsigned int	&getGrade() const;
 
-		void	upGrade() const;
-		void	downGrade() const;
+		void	upGrade();
+		void	downGrade();
 
 		class GradeTooHighException : public std::exception
 		{

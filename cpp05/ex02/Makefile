@@ -6,14 +6,14 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/04 18:22:02 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/08 22:38:23 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
 NAME		=	BeaurocraticCompleteForms
 CC			=	c++
-FLAGS		=	-Wall -Wextra -Werror -std=c++98
+FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3
 INCLUDES	=	-I $(HEADER)
 
 ###  PATHS ###
@@ -60,6 +60,7 @@ clean:
 	
 fclean: clean
 		@$(RM) $(NAME)
+		@$(RM) *_shrubbery
 		@echo "$(GREEN) Executable removed$(NOC)"
 
 re: fclean all
