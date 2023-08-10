@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:41:59 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/08 23:30:03 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/10 09:52:05 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main()
 	
 	Bureaucrat	CEO("Elon Zuckemberg", 1);
 	Bureaucrat	Assistant("Pepo Cepeda", 100);
-	Bureaucrat	Manager("Peda Cepepo", 10);
+	Bureaucrat	Manager("Mark Musk", 10);
 
 	std::cout << "\n----------------------------------------------" 
 	<< "\nWith the following bureaucrats:\n" 
