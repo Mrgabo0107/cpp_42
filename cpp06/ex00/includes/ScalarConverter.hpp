@@ -6,15 +6,20 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:57:51 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/10 16:59:34 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/12 04:54:43 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
+# define IMP "Impossible"
+# define N_D "Non diplayable"
+
 # include <iostream>
+# include <sstream>
 # include <string>
+# include <limits>
 
 enum e_type {
 	CHAR,
@@ -25,14 +30,21 @@ enum e_type {
 	D_EXTREME
 };
 
+enum e_message 
+{
+	IMPOSS,
+	N_DSPL,
+	GOOD
+};
+
 class ScalarConverter
 {
 
 	public:
 		// ScalarConverter();
-		// ScalarConverter( ScalarConverter const & src );
+		// ScalarConverter(ScalarConverter const &src);
 		// ~ScalarConverter();
-		// ScalarConverter &		operator=( ScalarConverter const & rhs );
+		// ScalarConverter &operator=(ScalarConverter const &rhs);
 		
 		static void	convert(const std::string &input);
 	
@@ -44,39 +56,35 @@ class ScalarConverter
 		static int			_int;
 		static float		_float;
 		static double		_double;
-		static std::string	_floatExtreme;
-		static std::string	_doubleExtreme;
 
 		//Accessors
 		static void					setInput(const std::string &input);
+		
 		static void					setType(void);
-		static void					setFirstChar(void);
-		static void					setFirstInt(void);
-		static void					setFirstFloat(void);
-		static void					setFirstDouble(void);
-		static void					setFirstFloatExtreme(void);
-		static void					setFirstDoubleExtreme(void);
-		static void 				castAnotherValues(void);
-		static const e_type			&getType();
-		static const char			&getChar();
-		static const int			&getInt();
-		static const float			&getFloat();
-		static const double			&getDouble();
-		static const std::string	&getFloatExtreme();
-		static const std::string	&getDoubleExtrme();
-
+		static bool					isChar(void);
+		static bool					isInt(void);
+		static bool					isFloat(void);
+		static bool					isDouble(void);
+		static bool					isFloatExtreme(void);
+		static bool					isDoubleExtreme(void);
+		
 		//Methods
-		static bool 		isChar(const std::string &input);
-		static bool 		isInt(const std::string &input);
-		static bool 		isFloat(const std::string &input);
-		static bool 		isDouble(const std::string &input);
-		static bool 		isFloatExtreme(const std::string &input);
-		static bool 		isDoubleExtreme(const std::string &input);
-		static void 		setMainValue(void);
-		static std::string	doubleExtrFromFloatExtr(void);
-		static std::string	floatExtrFromDoubleExtr(void);
+		static void 				AnotherValues(void);
+		static void					solveChar(void);
+		static void 				solveInt(void);
+		static void 				solveFloat(void);
+		static void 				solveDouble(void);
+		static void 				solveFExtreme(void);
+		static void 				solveDExtreme(void);
+		static void					intFromChar(void);
+		static void					floatFromChar(void);
+		static void					doubleFromChar(void);
+		static e_message			charFromInt(void);
+		static void					floatFromInt(void);
+		static void					doubleFromInt(void);
+		static e_message			intFromFloat(void);
+		static void					doubleFromFloat(void);
+		static e_message			floatFromDouble(void);
 };
-
-std::ostream &operator<<(std::ostream &o, ScalarConverter const &i);
 
 #endif /* ************************************************* SCALARCONVERTER_H */
