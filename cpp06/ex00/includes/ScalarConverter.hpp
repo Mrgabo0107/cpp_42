@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:57:51 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/12 04:54:43 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:43:58 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 # define N_D "Non diplayable"
 
 # include <iostream>
+# include <iomanip>
 # include <sstream>
 # include <string>
+# include <cstring>
 # include <limits>
+# include <cmath>
 
 enum e_type {
 	CHAR,
@@ -59,7 +62,6 @@ class ScalarConverter
 
 		//Accessors
 		static void					setInput(const std::string &input);
-		
 		static void					setType(void);
 		static bool					isChar(void);
 		static bool					isInt(void);
@@ -67,23 +69,27 @@ class ScalarConverter
 		static bool					isDouble(void);
 		static bool					isFloatExtreme(void);
 		static bool					isDoubleExtreme(void);
+		static void 				solveFExtreme(void);
+		static void 				solveDExtreme(void);
 		
 		//Methods
 		static void 				AnotherValues(void);
+		static std::string			trim(const std::string& input);
 		static void					solveChar(void);
 		static void 				solveInt(void);
 		static void 				solveFloat(void);
 		static void 				solveDouble(void);
-		static void 				solveFExtreme(void);
-		static void 				solveDExtreme(void);
 		static void					intFromChar(void);
 		static void					floatFromChar(void);
 		static void					doubleFromChar(void);
 		static e_message			charFromInt(void);
 		static void					floatFromInt(void);
 		static void					doubleFromInt(void);
+		static e_message			charFromFloat(void);
 		static e_message			intFromFloat(void);
 		static void					doubleFromFloat(void);
+		static e_message			charFromDouble(void);
+		static e_message			intFromDouble(void);
 		static e_message			floatFromDouble(void);
 };
 

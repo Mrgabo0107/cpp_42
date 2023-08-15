@@ -50,9 +50,18 @@ void ScalarConverter::convert(const std::string &input)
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+std::string ScalarConverter::trim(const std::string& input)
+{
+    size_t start = input.find_first_not_of(" \t\r\n");
+    if (start == std::string::npos)
+        return "";
+    size_t end = input.find_last_not_of(" \t\r\n");
+    return input.substr(start, end - start + 1);
+}
+
 void ScalarConverter::setInput(const std::string &input)
 {
-	_input = input;
+	_input = trim(input);
 }
 
 void ScalarConverter::setType(void)
@@ -88,53 +97,45 @@ bool ScalarConverter::isChar(void)
 
 bool ScalarConverter::isInt(void)
 {
-	if (_input.find_first_not_of("-+0123456789") != std::string::npos \
-	|| (_input.find_last_of("+-") != 0 && _input.find_last_of("+-") != std::string::npos))
-		return false;
-	long int aux;
-	std::istringstream iss(_input);
-	iss >> aux;
-	if (iss.fail())
-		return false;
-	if (aux < std::numeric_limits<int>::min() || aux > std::numeric_limits<int>::max())
-		return false;
-	iss.clear();
-    iss.seekg(0);
-	iss >> _int;
-	if (iss.fail())
-		return false;
-	return true;
+    char *endptr;
+    long int aux = strtol(_input.c_str(), &endptr, 10);
+
+    if (*endptr != '\0')
+        return false;
+    if (aux < std::numeric_limits<int>::min() || aux > std::numeric_limits<int>::max())
+        return false;
+    _int = static_cast<int>(aux);
+    return true;
 }
 
 bool ScalarConverter::isFloat(void)
 {
-	if (_input.find_first_not_of("-+0123456789.f") != std::string::npos \
-	|| (_input.find_last_of("+-") != 0 && _input.find_last_of("+-") != std::string::npos) \
-	|| _input.find_first_of("f") != _input.length() - 1)
+	if (_input.find('f') != _input.length() - 1)
 		return false;
-	double aux;
-	std::istringstream iss(_input);
-	iss >> aux;
-	std::cout << "double taken " <<  std::numeric_limits<float>::min() << aux << std::endl;
-	if (iss.fail())
-		return false;
-	if (aux < std::numeric_limits<float>::min() || aux > std::numeric_limits<float>::max())
-		return false;
-	iss.clear();
-    iss.seekg(0);
-	iss >> _float;
-	if (iss.fail())
-		return false;
-	return true;
+	std::string subinput = _input.substr(0, _input.length() - 1);
+	char *endptr;
+    float aux = strtof(subinput.c_str(), &endptr);
+
+    if (*endptr != '\0')
+        return false;
+    if (aux < std::numeric_limits<float>::min() || aux > std::numeric_limits<float>::max())
+        return false;
+    _float = aux;
+    return true;
 }
 
 bool ScalarConverter::isDouble(void)
 {
-	std::istringstream iss(_input);
-	iss >> _double;
-	if (iss.fail())
-		return false;
-	return true;
+	char* endptr;
+    double aux = strtod(_input.c_str(), &endptr);
+
+    if (*endptr != '\0')
+        return false;
+    if (aux < std::numeric_limits<double>::min() || aux > std::numeric_limits<double>::max()){
+        return false;
+	}
+	_double = aux;
+    return true;
 }
 
 bool ScalarConverter::isFloatExtreme(void)
@@ -186,8 +187,8 @@ void ScalarConverter::solveChar(void)
 	ScalarConverter::intFromChar();
 	std::cout << "char: \'" << _char << "\'" << std::endl;
 	std::cout << "int: " << _int << std::endl;
-	std::cout << "float: " << _float << std::endl;
-	std::cout << "double: " << _double << std::endl;
+	std::cout << std::fixed << std::setprecision(1)<< "float: " << _float << std::endl;
+	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
 void ScalarConverter::solveInt(void)
@@ -201,8 +202,8 @@ void ScalarConverter::solveInt(void)
 	else if (ScalarConverter::charFromInt() == GOOD)
 		std::cout << "char: \'" << _char << "\'" << std::endl;
 	std::cout << "int: " << _int << std::endl;
-	std::cout << "float: " << _float << std::endl;
-	std::cout << "double: " << _double << std::endl;
+	std::cout << std::fixed << std::setprecision(1)<< "float: " << _float << std::endl;
+	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
 void ScalarConverter::solveFloat(void)
@@ -215,16 +216,16 @@ void ScalarConverter::solveFloat(void)
 	}
 	else if (ScalarConverter::intFromFloat() == GOOD)
 	{
-		if (ScalarConverter::charFromInt() == IMPOSS)  
+		if (ScalarConverter::charFromFloat() == IMPOSS)  
 			std::cout << "char: " << IMP << std::endl;
-		else if (ScalarConverter::charFromInt() == N_DSPL)
+		else if (ScalarConverter::charFromFloat() == N_DSPL)
 			std::cout << "char: " << N_D << std::endl;
-		else if (ScalarConverter::charFromInt() == GOOD)
+		else if (ScalarConverter::charFromFloat() == GOOD)
 			std::cout << "char: \'" << _char  << "\'"<< std::endl;
 		std::cout << "int: " << _int << std::endl;
 	}
-	std::cout << "float: " << _float << std::endl;
-	std::cout << "double: " << _double << std::endl;
+	std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
 void ScalarConverter::solveDouble(void)
@@ -237,61 +238,81 @@ void ScalarConverter::solveDouble(void)
 	}
 	else if (ScalarConverter::floatFromDouble() == GOOD)
 	{
-		if (ScalarConverter::intFromFloat() == IMPOSS)
+		if (ScalarConverter::intFromDouble() == IMPOSS)
 		{
 			std::cout << "char: " << IMP << std::endl;
 			std::cout << "int: " << IMP << std::endl;
-			std::cout << "float: " << _float << std::endl;
+			std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
 		}
-		else if (ScalarConverter::intFromFloat() == GOOD)
+		else if (ScalarConverter::intFromDouble() == GOOD)
 		{
-			if (ScalarConverter::charFromInt() == IMPOSS)  
+			if (ScalarConverter::charFromDouble() == IMPOSS)  
 				std::cout << "char: " << IMP << std::endl;
-			else if (ScalarConverter::charFromInt() == N_DSPL)
+			else if (ScalarConverter::charFromDouble() == N_DSPL)
 				std::cout << "char: " << N_D << std::endl;
-			else if (ScalarConverter::charFromInt() == GOOD)
+			else if (ScalarConverter::charFromDouble() == GOOD)
 				std::cout << "char: \'" << _char  << "\'"<< std::endl;
 			std::cout << "int: " << _int << std::endl;
-			std::cout << "float: " << _float << std::endl;
+			std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
 		}
 	}
-	std::cout << "double: " << _double << std::endl;
+	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
 void ScalarConverter::solveFExtreme(void)
 {
 	std::cout << "char: " << IMP << std::endl;
 	std::cout << "int: " << IMP << std::endl;
-	std::cout << "float: " << _input << std::endl;
-	double extr;
 	if (_input == "-inff")
 	{
-		extr = static_cast<double>(std::numeric_limits<float>::min());
-		std::cout << "double: " << extr << std::endl;
+		_float = -std::numeric_limits<float>::infinity();
+		_double = static_cast<double>(_float);
+		std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+		std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 	}
 	else if (_input == "+inff")
 	{
-		extr = static_cast<double>(std::numeric_limits<float>::max());
-		std::cout << "double: " << extr << std::endl;
+		_float = std::numeric_limits<float>::infinity();
+		_double = static_cast<double>(_float);
+		std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+		std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 	}
-	else if (_input == "nanf")
-		std::cout << "double: nan" << std::endl;
+	// else if (_input == "nanf")
+	// {
+	// 	// _float = std::nanf("NaN");
+	// 	unsigned int nanInt = 0x7FC00000;  // Binary representation of NaN
+	// 	std::memcpy(&_float, &nanInt, sizeof(float));
+	// 	_double =  static_cast<double>(_float);
+	// 	std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+	// 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
+	// }
 }
 
 void ScalarConverter::solveDExtreme(void)
 {
 	std::cout << "char: " << IMP << std::endl;
 	std::cout << "int: " << IMP << std::endl;
-	if (_input == "nan")
+	if (_input == "-inf")
 	{
-	std::cout << "float: nanf" << std::endl;
-	std::cout << "double: " << _input << std::endl;
+		_double = -std::numeric_limits<double>::infinity();
+		_float = static_cast<float>(_double);  
+		std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+		std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 	}
-	else
+	else if (_input == "+inf")
 	{
-	std::cout << "float: " << IMP << std::endl;
-	std::cout << "double: " << _input << std::endl;
+		_double = std::numeric_limits<double>::infinity();
+		_float = static_cast<float>(_double);
+		std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+		std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 	}
+	// else if (_input == "nan")
+	// {
+	// 	_double = std::numeric_limits<double>::quiet_NaN();
+	// 	_float = static_cast<float>(_double);
+	// 	std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+	// 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
+	// }
 }
 
 // CHAR
@@ -332,9 +353,19 @@ void ScalarConverter::doubleFromInt(void)
 }
 
 // FLOAT
+e_message ScalarConverter::charFromFloat(void)
+{
+	if (_float < 0 || _float > 127)
+		return (IMPOSS);
+	if (_float < 32 || _float > 126)
+		return (N_DSPL);
+	_char = static_cast<char>(_float);
+	return (GOOD);
+}
+
 e_message ScalarConverter::intFromFloat(void)
 {
-	if (static_cast<long int>(_float) < static_cast<long int>(std::numeric_limits<int>::min()) \
+	if (static_cast<long int>(_float) < static_cast<long int>(std::numeric_limits<int>::min())
 	|| static_cast<long int>(_float) > static_cast<long int>(std::numeric_limits<int>::max()))
 		return (IMPOSS);
 	_int = static_cast<int>(_float);
@@ -347,10 +378,30 @@ void ScalarConverter::doubleFromFloat(void)
 }
 
 // DOUBLE
+e_message ScalarConverter::charFromDouble(void)
+{
+	if (_double < 0 || _double > 127)
+		return (IMPOSS);
+	if (_double < 32 || _double > 126)
+		return (N_DSPL);
+	_char = static_cast<char>(_double);
+	return (GOOD);
+}
+
+e_message ScalarConverter::intFromDouble(void)
+{
+	if (static_cast<long int>(_double) < static_cast<long int>(std::numeric_limits<int>::min())
+	|| static_cast<long int>(_double) > static_cast<long int>(std::numeric_limits<int>::max()))
+		return (IMPOSS);
+	_int = static_cast<int>(_double);
+	return (GOOD);
+}
+
 e_message ScalarConverter::floatFromDouble(void)
 {
-	if (_double < static_cast<double>(std::numeric_limits<float>::min()) \
-	|| _double > static_cast<double>(std::numeric_limits<float >::max()))
+	if ((0 < std::abs(_double) && std::abs(_double) < static_cast<double>(std::numeric_limits<float>::min()))
+	|| _double < -static_cast<double>(std::numeric_limits<float>::max())
+	|| _double > static_cast<double>(std::numeric_limits<float>::max()))
 		return (IMPOSS);
 	_float = static_cast<float>(_double);
 	return (GOOD);
