@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:57:51 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/15 19:43:58 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/16 01:14:21 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ class ScalarConverter
 {
 
 	public:
-		// ScalarConverter();
-		// ScalarConverter(ScalarConverter const &src);
-		// ~ScalarConverter();
-		// ScalarConverter &operator=(ScalarConverter const &rhs);
+		//Contextual_garbage
+		ScalarConverter();
+		ScalarConverter(ScalarConverter const &src);
+		~ScalarConverter();
+		ScalarConverter &operator=(ScalarConverter const &rhs);
 		
 		static void	convert(const std::string &input);
 	
@@ -69,16 +70,16 @@ class ScalarConverter
 		static bool					isDouble(void);
 		static bool					isFloatExtreme(void);
 		static bool					isDoubleExtreme(void);
-		static void 				solveFExtreme(void);
-		static void 				solveDExtreme(void);
+		static void					solveFExtreme(void);
+		static void					solveDExtreme(void);
 		
 		//Methods
 		static void 				AnotherValues(void);
 		static std::string			trim(const std::string& input);
 		static void					solveChar(void);
-		static void 				solveInt(void);
-		static void 				solveFloat(void);
-		static void 				solveDouble(void);
+		static void					solveInt(void);
+		static void					solveFloat(void);
+		static void					solveDouble(void);
 		static void					intFromChar(void);
 		static void					floatFromChar(void);
 		static void					doubleFromChar(void);

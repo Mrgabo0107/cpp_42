@@ -6,14 +6,14 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/16 01:34:19 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/16 01:00:06 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-NAME		=	convert
+NAME		=	identifyType	
 CC			=	c++
-FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3
+FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDES	=	-I $(HEADER)
 
 ###  PATHS ###
@@ -23,8 +23,7 @@ OBJ_PATH	=	objs/
 
 ### FILES ###
 SOURCES		=	main.cpp \
-				ScalarConverter.cpp
-
+				Base.cpp
 				
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))

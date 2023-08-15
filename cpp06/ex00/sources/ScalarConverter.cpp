@@ -1,40 +1,33 @@
 #include "ScalarConverter.hpp"
 
-// /*
-// ** ------------------------------- CONSTRUCTOR --------------------------------
-// */
-
-// ScalarConverter::ScalarConverter()
-// {}
-
-// ScalarConverter::ScalarConverter(const ScalarConverter &src)
-// {
-//		*this = src
-// }
-
-// /*
-// ** -------------------------------- DESTRUCTOR --------------------------------
-// */
-
-// ScalarConverter::~ScalarConverter()
-// {}
-
-// /*
-// ** --------------------------------- ASSIGN ----------------------------------
-// */
-
-// ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
-// {
-// 	(void)rhc;
-// 	return *this;
-// }
-
 std::string	ScalarConverter::_input;
 e_type		ScalarConverter::_type;
 char		ScalarConverter::_char;
 int			ScalarConverter::_int;
 float		ScalarConverter::_float;
 double		ScalarConverter::_double;
+
+/*
+** ------------------------------- CONTEXTUAL GARBAGE --------------------------------
+*/
+
+ScalarConverter::ScalarConverter()
+{}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &src)
+{
+	*this = src;
+}
+
+ScalarConverter::~ScalarConverter()
+{}
+
+
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
+{
+	(void)rhs;
+	return *this;
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------
@@ -44,7 +37,6 @@ void ScalarConverter::convert(const std::string &input)
 	ScalarConverter::setInput(input);
 	ScalarConverter::setType();
 	ScalarConverter::AnotherValues();
-	std::cout << "type " <<_type << std::endl;
 }
 
 /*
@@ -52,11 +44,11 @@ void ScalarConverter::convert(const std::string &input)
 */
 std::string ScalarConverter::trim(const std::string& input)
 {
-    size_t start = input.find_first_not_of(" \t\r\n");
-    if (start == std::string::npos)
-        return "";
-    size_t end = input.find_last_not_of(" \t\r\n");
-    return input.substr(start, end - start + 1);
+	size_t start = input.find_first_not_of(" \t\r\n");
+	if (start == std::string::npos)
+		return "";
+	size_t end = input.find_last_not_of(" \t\r\n");
+	return input.substr(start, end - start + 1);
 }
 
 void ScalarConverter::setInput(const std::string &input)
@@ -97,15 +89,15 @@ bool ScalarConverter::isChar(void)
 
 bool ScalarConverter::isInt(void)
 {
-    char *endptr;
-    long int aux = strtol(_input.c_str(), &endptr, 10);
-
-    if (*endptr != '\0')
-        return false;
-    if (aux < std::numeric_limits<int>::min() || aux > std::numeric_limits<int>::max())
-        return false;
-    _int = static_cast<int>(aux);
-    return true;
+	char *endptr;
+	long int aux = strtol(_input.c_str(), &endptr, 10);	
+	
+	if (*endptr != '\0')
+		return false;
+	if (aux < std::numeric_limits<int>::min() || aux > std::numeric_limits<int>::max())
+		return false;
+	_int = static_cast<int>(aux);
+	return true;
 }
 
 bool ScalarConverter::isFloat(void)
@@ -114,28 +106,27 @@ bool ScalarConverter::isFloat(void)
 		return false;
 	std::string subinput = _input.substr(0, _input.length() - 1);
 	char *endptr;
-    float aux = strtof(subinput.c_str(), &endptr);
+	float aux = strtof(subinput.c_str(), &endptr);
 
-    if (*endptr != '\0')
-        return false;
-    if (aux < std::numeric_limits<float>::min() || aux > std::numeric_limits<float>::max())
-        return false;
-    _float = aux;
-    return true;
+	if (*endptr != '\0')
+		return false;
+	if (aux < -std::numeric_limits<float>::max() || aux > std::numeric_limits<float>::max())
+		return false;
+	_float = aux;
+	return true;
 }
 
 bool ScalarConverter::isDouble(void)
 {
 	char* endptr;
-    double aux = strtod(_input.c_str(), &endptr);
+	double aux = strtod(_input.c_str(), &endptr);
 
-    if (*endptr != '\0')
-        return false;
-    if (aux < std::numeric_limits<double>::min() || aux > std::numeric_limits<double>::max()){
-        return false;
-	}
+	if (*endptr != '\0')
+        	return false;
+	if (aux < -std::numeric_limits<double>::max() || aux > std::numeric_limits<double>::max())
+        	return false;
 	_double = aux;
-    return true;
+	return true;
 }
 
 bool ScalarConverter::isFloatExtreme(void)
@@ -187,7 +178,7 @@ void ScalarConverter::solveChar(void)
 	ScalarConverter::intFromChar();
 	std::cout << "char: \'" << _char << "\'" << std::endl;
 	std::cout << "int: " << _int << std::endl;
-	std::cout << std::fixed << std::setprecision(1)<< "float: " << _float << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << _float << 'f' << std::endl;
 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
@@ -202,7 +193,7 @@ void ScalarConverter::solveInt(void)
 	else if (ScalarConverter::charFromInt() == GOOD)
 		std::cout << "char: \'" << _char << "\'" << std::endl;
 	std::cout << "int: " << _int << std::endl;
-	std::cout << std::fixed << std::setprecision(1)<< "float: " << _float << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << _float << 'f' << std::endl;
 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
@@ -224,7 +215,7 @@ void ScalarConverter::solveFloat(void)
 			std::cout << "char: \'" << _char  << "\'"<< std::endl;
 		std::cout << "int: " << _int << std::endl;
 	}
-	std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << _float << 'f' << std::endl;
 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 }
 
@@ -242,7 +233,7 @@ void ScalarConverter::solveDouble(void)
 		{
 			std::cout << "char: " << IMP << std::endl;
 			std::cout << "int: " << IMP << std::endl;
-			std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+			std::cout << "float: " << std::fixed << std::setprecision(1) << _float << 'f' << std::endl;
 		}
 		else if (ScalarConverter::intFromDouble() == GOOD)
 		{
@@ -253,7 +244,7 @@ void ScalarConverter::solveDouble(void)
 			else if (ScalarConverter::charFromDouble() == GOOD)
 				std::cout << "char: \'" << _char  << "\'"<< std::endl;
 			std::cout << "int: " << _int << std::endl;
-			std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
+			std::cout << "float: " << std::fixed << std::setprecision(1) << _float << 'f' << std::endl;
 		}
 	}
 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
@@ -277,15 +268,6 @@ void ScalarConverter::solveFExtreme(void)
 		std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
 		std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 	}
-	// else if (_input == "nanf")
-	// {
-	// 	// _float = std::nanf("NaN");
-	// 	unsigned int nanInt = 0x7FC00000;  // Binary representation of NaN
-	// 	std::memcpy(&_float, &nanInt, sizeof(float));
-	// 	_double =  static_cast<double>(_float);
-	// 	std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
-	// 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
-	// }
 }
 
 void ScalarConverter::solveDExtreme(void)
@@ -306,13 +288,6 @@ void ScalarConverter::solveDExtreme(void)
 		std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
 		std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
 	}
-	// else if (_input == "nan")
-	// {
-	// 	_double = std::numeric_limits<double>::quiet_NaN();
-	// 	_float = static_cast<float>(_double);
-	// 	std::cout << std::fixed << std::setprecision(1) << "float: " << _float << 'f' << std::endl;
-	// 	std::cout << "double: "  << std::fixed << std::setprecision(1) << _double << std::endl;
-	// }
 }
 
 // CHAR
