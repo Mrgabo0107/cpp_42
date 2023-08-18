@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:25:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/17 22:57:26 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/18 21:51:35 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,11 @@ class Array {
 		Array();
 		explicit Array(unsigned int n);
 		Array(const Array& other);
-	
-		Array& operator=(const Array& other) {
-			if (this != &other) {
-				delete[] elements;
-				elements = new T[other.arraySize];
-				arraySize = other.arraySize;
-				for (size_t i = 0; i < arraySize; ++i) {
-					elements[i] = other.elements[i];
-				}
-			}
-			return *this;
-		}
-	
-		~Array() {
-			delete[] elements;
-		}
-	
-		T& operator[](size_t index) {
-			if (index >= arraySize) {
-				throw std::out_of_range("Index out of bounds");
-			}
-			return elements[index];
-		}
-	
-		size_t size() const {
-			return arraySize;
-		}
-}
+		Array& operator=(const Array& other);
+		~Array();
+		T& operator[](size_t index);
+		size_t size() const;
+};
 
 # include "array.tpp"
 

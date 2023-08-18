@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/17 22:14:57 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/18 22:17:45 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME		=	array
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
-INCLUDES	=	-I $(HEADER)
+INCLUDES	=	-I $(HEADER) -I $(TEMPL_PATH) 
 
 ###  PATHS ###
 SRC_PATH	=	sources/
@@ -23,14 +23,11 @@ OBJ_PATH	=	objs/
 TEMPL_PATH	=	templates/
 
 ### FILES ###
-SOURCES		=	main.cpp \
-
-TEMPLATES	=	array.tpp \
+SOURCES		=	main.cpp 
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
 OBJS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.o))
-OBJS		+=	$(addprefix $(OBJ_PATH),$(TEMPLATES:.tpp=.o))
 DEPS		=	$(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.d))	
 
 ### COLORS ###
@@ -51,9 +48,6 @@ $(NAME): $(OBJS)
 		@echo "$(GREEN) Compilation succesfully.$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
-		@$(CC) $(FLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
-
-$(OBJ_PATH)%.o: $(TEMPL_PATH)%.tpp
 		@$(CC) $(FLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
 clean:

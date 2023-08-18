@@ -6,11 +6,12 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:34:03 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/17 22:35:39 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:09:02 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "array.hpp"
+
 
 int main() {
     Array<int> intArray(5);
