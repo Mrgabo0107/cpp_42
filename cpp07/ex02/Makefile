@@ -6,14 +6,14 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/18 22:17:45 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/19 13:57:37 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
 NAME		=	array
 CC			=	c++
-FLAGS		=	-Wall -Wextra -Werror -std=c++98
+FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3
 INCLUDES	=	-I $(HEADER) -I $(TEMPL_PATH) 
 
 ###  PATHS ###
