@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array.tpp                                          :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:25:31 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/19 14:44:19 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/21 21:01:16 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_TPP
-# define ARRAY_tpp
+# define ARRAY_TPP
 
-#include "array.hpp"
+#include "Array.hpp"
 
 template <typename T>
 Array<T>::Array() : elements(NULL), arraySize(0) {}

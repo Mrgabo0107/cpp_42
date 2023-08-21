@@ -6,11 +6,11 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:34:03 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/19 14:43:27 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:58:41 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "array.hpp"
+#include "Array.hpp"
 
 
 int main() {
