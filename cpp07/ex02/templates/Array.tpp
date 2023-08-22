@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:25:31 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/21 21:01:16 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/23 01:04:10 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ Array<T>::~Array() {
 
 template <typename T>
 T& Array<T>::operator[](size_t index) {
+	if (index >= arraySize) {
+		throw std::out_of_range("Index out of bounds");
+	}
+	return elements[index];
+}
+
+template <typename T>
+const T& Array<T>::operator[](size_t index) const {
 	if (index >= arraySize) {
 		throw std::out_of_range("Index out of bounds");
 	}

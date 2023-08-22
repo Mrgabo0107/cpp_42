@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:34:03 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/16 21:50:02 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:37:43 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int main(){
 	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
 
 	// For testing non comparable classes
-	//NoComparison obj1(5);
-	//NoComparison obj2(10);
-	//
+	// NoComparison obj1(5);
+	// NoComparison obj2(10);
+	
 	// try {
 	// 	NoComparison minObj = min(obj1, obj2);
 	// 	NoComparison maxObj = max(obj1, obj2);

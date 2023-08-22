@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:34:03 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/21 20:58:41 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/23 01:02:27 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int main() {
     }
 	std::cout << std::endl;
 
+	const Array<int> constTest(intArray);
+	for (size_t i = 0; i < constTest.size(); ++i) {
+		std::cout << constTest[i] << " ";
+    }
+	std::cout << std::endl;
+	
 	try {
 		int outOfBounds = intArray[10];
 		(void)outOfBounds;
@@ -40,7 +46,7 @@ int main() {
 		std::cout << intArray[i] << " ";
 	std::cout << std::endl;
 
-	//ANother type	
+	//Another type	
 	Array<char> charArray(10);
 	for (size_t i = 0; i < charArray.size(); ++i) {
 		charArray[i] = (i + 33);

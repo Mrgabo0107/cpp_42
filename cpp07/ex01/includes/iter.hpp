@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:30:56 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/16 23:32:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/23 00:51:16 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ void iter(T* array, size_t length, void (*function)(T&)) {
 
 template <typename T>
 void iter(T* array, size_t length, void (*function)(T)) {
+    if (!array) {
+        std::cout << "invalid array" << std::endl;
+        return ;
+    }
+    for (size_t i = 0; i < length; ++i) {
+        function(array[i]);
+    }
+}
+
+template <typename T>
+void iter(T const *array, size_t length, void (*function)(const T&)) {
     if (!array) {
         std::cout << "invalid array" << std::endl;
         return ;

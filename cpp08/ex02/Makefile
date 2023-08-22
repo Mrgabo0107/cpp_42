@@ -6,25 +6,24 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/22 20:57:32 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/22 22:20:02 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-NAME		=	array
+NAME		=	MutantStack
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
-INCLUDES	=	-I $(HEADER) -I $(TEMPL_PATH) 
+INCLUDES	=	-I $(HEADER) -I $(TEMPLATES) 
 
 ###  PATHS ###
 SRC_PATH	=	sources/
 HEADER		=	includes/
+TEMPLATES	=	templates/
 OBJ_PATH	=	objs/
-TEMPL_PATH	=	templates/
 
 ### FILES ###
-SOURCES		=	main.cpp	# My main
-# SOURCES		=	42Main.cpp		# The main provided by the school
+SOURCES		=	main.cpp \
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))

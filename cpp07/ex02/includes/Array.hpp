@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 22:25:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/21 20:59:00 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/23 01:03:51 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Array {
 		Array& operator=(const Array& other);
 		~Array();
 		T& operator[](size_t index);
+		const T& operator[](size_t index) const;
 		size_t size() const;
 };
 
