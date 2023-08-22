@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   easyFind.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 13:35:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/22 05:00:58 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/08/21 23:09:59 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/08/21 23:18:42 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef EASYFIND_TPP
+# define EASYFIND_TPP
 
-int main(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		std::cerr << "Usage: ./convert literal" << std::endl;
-		return (1);
-	}
-	try
-	{
-		ScalarConverter::convert(av[1]);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
+# include "easyFind.hpp"
+
+template <typename T>
+typename T::iterator easyfind(T& container, int value) {
+    typename T::iterator result = std::find(container.begin(), container.end(), value);
+    return result;
+};
+
+#endif

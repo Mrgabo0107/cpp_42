@@ -6,12 +6,12 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/21 21:41:10 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/21 22:21:05 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-NAME		=	array
+NAME		=	easyFind
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDES	=	-I $(HEADER) -I $(TEMPL_PATH) 
@@ -23,8 +23,7 @@ OBJ_PATH	=	objs/
 TEMPL_PATH	=	templates/
 
 ### FILES ###
-SOURCES		=	main.cpp	# My main
-# SOURCES		=	42Main.cpp		# The main provided by the school
+SOURCES		=	main.cpp 
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
