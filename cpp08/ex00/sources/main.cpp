@@ -6,16 +6,10 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 21:37:37 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/21 23:22:14 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/23 20:18:00 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iterator>
-#include <vector>
-#include <list>
-#include <deque>
-#include <algorithm>
 #include "easyFind.hpp"
 
 int main() {

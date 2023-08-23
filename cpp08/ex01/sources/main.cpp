@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 21:37:37 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/22 06:15:47 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/23 20:52:19 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main() {
 		int additionalNumbersArr[] = {20, 1, 8, -2, 14, -5};
 		std::vector<int> additionalNumbers(additionalNumbersArr, additionalNumbersArr + sizeof(additionalNumbersArr) / sizeof(int));
 		try {
-		sp.addNumbers(additionalNumbers.begin(), additionalNumbers.end());
+			sp.addNumbers(additionalNumbers.begin(), additionalNumbers.end());
 		}
 		catch(const std::runtime_error& e) {
 			std::cerr << e.what() << std::endl;
