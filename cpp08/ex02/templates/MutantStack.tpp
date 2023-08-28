@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:26:14 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/23 21:57:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:46:35 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,26 @@ typename MutantStack<T>::iterator MutantStack<T>::end() {
 template <typename T>
 typename MutantStack<T>::const_iterator MutantStack<T>::end() const {
 	return this->c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin() {
+	return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rbegin() const {
+	return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rend() {
+	return this->c.rend();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const {
+	return this->c.rend();
 }
 
 #endif // MUTANTSTACK_TPP

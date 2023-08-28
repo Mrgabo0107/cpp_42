@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/23 00:57:36 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/24 16:01:17 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEADER		=	includes/
 OBJ_PATH	=	objs/
 
 ### FILES ###
-SOURCES		=	main.cpp \
+SOURCES		=	main.cpp # My main
+# SOURCES		=	ex01.cpp # Main proposed by 42 in the correction sheet
 
 				
 ### FILE MANAGEMENT ###

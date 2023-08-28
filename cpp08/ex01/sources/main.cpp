@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 21:37:37 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/23 20:52:19 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:40:58 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ int main() {
 		std::cout << "\n\nhugeSp after adding two 6000 member sets of numbers: \n" << hugeSp << std::endl;
 		std::cout << "ShortestSpan: " << hugeSp.shortestSpan() << std::endl;
 		std::cout << "LongestSpan: " << hugeSp.longestSpan() << std::endl;
+		std::cout << "\nTrying to add more numbers than expected: " << std::endl;
+		try {
+		hugeSp.addNumber(1);
+		}
+		catch(const std::runtime_error& e) {
+			std::cerr << e.what() << std::endl;
+		}
 	}
 	return 0;
 }

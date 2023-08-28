@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 21:34:03 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/08/23 01:02:27 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:05:11 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main() {
     }
 	std::cout << std::endl;
 
+	//testing const array
 	const Array<int> constTest(intArray);
 	for (size_t i = 0; i < constTest.size(); ++i) {
 		std::cout << constTest[i] << " ";

@@ -6,12 +6,12 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/08/22 22:20:02 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/08/24 16:43:23 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-NAME		=	MutantStack
+NAME		=	mutantStack
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDES	=	-I $(HEADER) -I $(TEMPLATES) 
