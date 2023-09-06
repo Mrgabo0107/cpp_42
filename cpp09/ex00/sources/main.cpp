@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:19:07 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/09/06 01:14:23 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:02:49 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ int main(int ac, char **av) {
 
 
 
-//     std::ifstream inputFile(argv[1]);
-//     if (!inputFile) {
-//         std::cerr << "Error: could not open input file." << std::endl;
-//         return 1;
-//     }
 
 //     while (std::getline(inputFile, line)) {
 //         std::istringstream iss(line);
@@ -63,4 +58,15 @@ int main(int ac, char **av) {
 //     }
 
 //     return 0;
+
+		// if (((dateReturn.month == 1 || dateReturn.month == 3 ||
+		// 	dateReturn.month == 5 || dateReturn.month == 7 ||
+		// 	dateReturn.month == 8 || dateReturn.month == 10 ||
+		// 	dateReturn.month == 12) && (0 >= aux || aux > 31)) ||
+		// 	((dateReturn.month == 4 || dateReturn.month == 6 ||
+		// 	dateReturn.month == 9 || dateReturn.month == 11) &&
+		// 	(0 >= aux || aux > 30)) ||
+		// 	(dateReturn.month == 2 && ((BitcoinExchange::isLeapYear(dateReturn.year) &&
+		// 	(0 >= aux || aux > 29)) || (!BitcoinExchange::isLeapYear(dateReturn.year) &&
+		// 	(0 >= aux || aux > 28))))) {
 // }
