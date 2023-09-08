@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:12:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/09/06 13:13:45 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/09/08 04:59:19 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <cstdlib>
 # include <iomanip>
 # include <climits>
+# include <algorithm>
 
 class BitcoinExchange
 {
@@ -43,10 +44,16 @@ class BitcoinExchange
 		};
 		
 		const std::map<date, double>	&getData() const;
+
 	private:
 		std::map<date, double>	_data;
 
-		date dateStringToDate(std::string dateString);
+		bool 		dateStringToDate(std::string dateString, date &dateStruct);
+		std::string	elimWhitespaces(const std::string &string);
+		bool		isValidDate(const date &currDate);
+		bool		isLeapYear(unsigned int year);
+		bool		isValidAmount(std::string amountString, float &currAmount);
+		void		showActualValue(const std::string &dateString, const date &currDate, const float &currAmount);
 };
 
 #endif /* ************************************************* BITCOINEXCHANGE_H */

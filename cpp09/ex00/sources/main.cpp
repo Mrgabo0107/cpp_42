@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:19:07 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/09/06 16:02:49 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/09/08 03:22:38 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main(int ac, char **av) {
 	if (ac != 2) {
-		std::cerr << "Error: could not open file" << std::endl;
+		std::cerr << "Error: could not open file\n" << "Usage: " << av[0]
+		<< " input_file" << std::endl;
 		return 1;
 	}
 	BitcoinExchange exchange("data.csv");
@@ -22,51 +23,4 @@ int main(int ac, char **av) {
 	return 0;
 }
 
-// int main(int argc, char *argv[]) {
 
-
-
-
-
-
-
-//     while (std::getline(inputFile, line)) {
-//         std::istringstream iss(line);
-//         std::string date;
-//         double value;
-
-//         if (iss >> date >> value) {
-//             std::map<std::string, double>::iterator it = bitcoinPrices.lower_bound(date);
-//             if (it == bitcoinPrices.begin()) {
-//                 std::cerr << "Error: Date not found in database, using the closest available date." << std::endl;
-//                 it = bitcoinPrices.begin();
-//             } else if (it == bitcoinPrices.end()) {
-//                 std::cerr << "Error: Date not found in database, using the closest available date." << std::endl;
-//                 --it;
-//             } else {
-//                 std::map<std::string, double>::iterator prev = it;
-//                 --prev;
-//                 if (date > it->first && date < prev->first) {
-//                     it = prev;
-//                 }
-//             }
-//             const double exchangeRate = it->second;
-//             std::cout << date << " => " << value << " = " << std::fixed << std::setprecision(2) << (value * exchangeRate) << std::endl;
-//         } else {
-//             std::cerr << "Error: bad input format." << std::endl;
-//         }
-//     }
-
-//     return 0;
-
-		// if (((dateReturn.month == 1 || dateReturn.month == 3 ||
-		// 	dateReturn.month == 5 || dateReturn.month == 7 ||
-		// 	dateReturn.month == 8 || dateReturn.month == 10 ||
-		// 	dateReturn.month == 12) && (0 >= aux || aux > 31)) ||
-		// 	((dateReturn.month == 4 || dateReturn.month == 6 ||
-		// 	dateReturn.month == 9 || dateReturn.month == 11) &&
-		// 	(0 >= aux || aux > 30)) ||
-		// 	(dateReturn.month == 2 && ((BitcoinExchange::isLeapYear(dateReturn.year) &&
-		// 	(0 >= aux || aux > 29)) || (!BitcoinExchange::isLeapYear(dateReturn.year) &&
-		// 	(0 >= aux || aux > 28))))) {
-// }
