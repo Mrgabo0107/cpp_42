@@ -6,21 +6,17 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:12:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/09/08 04:59:19 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/09/09 01:53:13 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
-# include <string>
 # include <iostream>
 # include <fstream>
 # include <map>
-# include <string>
 # include <sstream>
-# include <cstdlib>
-# include <iomanip>
 # include <climits>
 # include <algorithm>
 
@@ -41,6 +37,7 @@ class BitcoinExchange
 
 			bool operator<(const date& other) const;
 			bool operator==(const date& other) const;
+			bool operator<=(const date& other) const;
 		};
 		
 		const std::map<date, double>	&getData() const;

@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:26:41 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/09/08 05:02:36 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/09/08 18:49:31 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,11 +187,13 @@ void	BitcoinExchange::showActualValue(const std::string &dateString,
 	
 	if (currDate < it->first) {
 		std::cerr << "Error: date before the first in the database" << std::endl;
+		return ;
 	}
-	while (it != _data.end() && it->first < currDate)
+	while (it != _data.end() && it->first <= currDate)
 		it++;
+	it--;		
 	std::cout << dateString << " => " << currAmount << " = "
-	<< it->second * currAmount << std::endl;
+	<< '[' << it->first.year << '/' << it->first.month << '/' << it->first.day << ']' << it->second * currAmount << std::endl;
 }
 
 void	BitcoinExchange::executeBitcoinExchange(std::string inputPath)
@@ -249,6 +251,10 @@ bool BitcoinExchange::date::operator<(const date& other) const {
 
 bool BitcoinExchange::date::operator==(const date& other) const {
 	return year == other.year && month == other.month && day == other.day;
+}
+
+bool BitcoinExchange::date::operator<=(const date& other) const {
+	return *this < other || *this == other;
 }
 
 /*
