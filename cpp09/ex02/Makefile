@@ -6,12 +6,12 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/21 16:55:18 by gamoreno          #+#    #+#              #
-#    Updated: 2023/09/12 22:04:29 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/09/12 22:04:55 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
-NAME		=	RPN
+NAME		=	PmergeMe
 CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDES	=	-I $(HEADER) 
@@ -23,7 +23,7 @@ OBJ_PATH	=	objs/
 
 ### FILES ###
 SOURCES		=	main.cpp \
-				RPN.cpp
+				PmergeMe.cpp
 
 ### FILE MANAGEMENT ###
 SRCS		=	$(addprefix $(SRC_PATH),$(SOURCES))
