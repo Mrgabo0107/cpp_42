@@ -58,17 +58,17 @@ bool	PmergeMe::solve() {
 	char** agCopy = _ag;
 	struct timeval startT, endT;
 
-	gettimeofday(startT, NULL);
+	gettimeofday(&startT, NULL);
 	if (!PmergeMe::solveDeque(agCopy))
 		return false;
-	gettimeofday(endT, NULL);
+	gettimeofday(&endT, NULL);
 	_timeDeq = elapsedTimeMicroSec(startT, endT);
 
-	gettimeofday(startT, NULL);
+	gettimeofday(&startT, NULL);
 	if (!PmergeMe::solveVector(agCopy))
 		return false;
-	gettimeofday(endT, NULL);
-	_timeVec = elapsedTimeMicroSec(startT, endT);
+	gettimeofday(&endT, NULL);
+	_timeDeq = elapsedTimeMicroSec(startT, endT);
 
 	return true;
 }
@@ -539,7 +539,68 @@ int PmergeMe::getAc() {
 
 std::ostream &operator<<(std::ostream &o, PmergeMe const &i)
 {
+	{
+	PmergeMe::VecOfVecs::const_iterator itv = i.getInitVec().begin();
+	o << "Vector init: {";
 	
+	while (itv != i.getInitVec().end()) {
+		PmergeMe::Vect::const_iterator inner_itv = itv->begin();
+		o << "{";
+		while (inner_itv != itv->end()) {
+			o << " " << *inner_itv << " ";
+			++inner_itv;
+		}
+		o << "}";
+		++itv;
+	}
+	o << "}";
+
+	PmergeMe::DeqOfDeqs::const_iterator itd = i.getInitDeq().begin();
+    o << "\n\nDeque init: {";
+
+    while (itd != i.getInitDeq().end()) {
+        PmergeMe::Dequ::const_iterator inner_itd = itd->begin();
+        o << "{";
+        while (inner_itd != itd->end()) {
+            o << " " << *inner_itd << " ";
+            ++inner_itd;
+        }
+        o << "}";
+        ++itd;
+    }
+    o << "}";
+	}
+	{
+	PmergeMe::VecOfVecs::const_iterator itv = i.getVecRet().begin();
+	o << "\nVector values: {";
+	
+	while (itv != i.getVecRet().end()) {
+		PmergeMe::Vect::const_iterator inner_itv = itv->begin();
+		o << "{";
+		while (inner_itv != itv->end()) {
+			o << " " << *inner_itv << " ";
+			++inner_itv;
+		}
+		o << "}";
+		++itv;
+	}
+	o << "}";
+
+	PmergeMe::DeqOfDeqs::const_iterator itd = i.getDeqRet().begin();
+    o << "\n\nDeque values: {";
+
+    while (itd != i.getDeqRet().end()) {
+        PmergeMe::Dequ::const_iterator inner_itd = itd->begin();
+        o << "{";
+        while (inner_itd != itd->end()) {
+            o << " " << *inner_itd << " ";
+            ++inner_itd;
+        }
+        o << "}";
+        ++itd;
+    }
+	}
+	return o;
 }
 
 
