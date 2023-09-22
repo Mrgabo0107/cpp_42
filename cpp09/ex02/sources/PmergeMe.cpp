@@ -20,7 +20,7 @@ PmergeMe::PmergeMe(int ac, char** ag) : _ac(ac), _ag(ag) {}
 
 PmergeMe::PmergeMe(PmergeMe const &src) : _ac(src._ac), _ag(src._ag),
 _initVec(src._initVec), _initDeq(src._initDeq), _vecRet(src._vecRet),
-_deqRet(src._deqRet) {}
+_deqRet(src._deqRet), _timeVec(src._timeVec), _timeDeq(src._timeDeq) {}
 
 
 /*
@@ -45,6 +45,8 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &rhs)
 		_initDeq = rhs._initDeq;
 		_vecRet = rhs._vecRet;
 		_deqRet = rhs._deqRet;
+		_timeVec = rhs._timeVec;
+		_timeDeq = rhs._timeDeq;
 	}
 	return *this;
 }
@@ -574,7 +576,5 @@ std::ostream& operator<<(std::ostream &o, const PmergeMe &i)
 	<< i.getInitDeq().size() << " with std::deque : " << i.getTimeDeq() << std::endl;
 	return o;	
 }
-
-
 
 /* ************************************************************************** */
