@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:29:44 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/09/20 17:34:42 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/09/22 02:54:31 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ class PmergeMe
 		const DeqOfDeqs&	getDeqRet() const;
 		char**&				getAg();
 		int					getAc();
+		long long			getTimeVec() const;
+		long long			getTimeDeq() const;
 
 		bool	solve();
+		void	printVec(const VecOfVecs& Vec) const;
+		void	printDeq(const DeqOfDeqs& Deq) const;
 
 	private:
 		int										_ac;

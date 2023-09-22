@@ -54,21 +54,35 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &rhs)
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void	PmergeMe::printVec(const VecOfVecs& Vec) const {
+	for (VecOfVecs::const_iterator it = Vec.begin(); it != Vec.end(); ++it) {
+		std::cout << (*it)[0] << " ";
+	}
+	std::cout << std::endl;
+}
+
+void	PmergeMe::printDeq(const DeqOfDeqs& Deq) const {
+	for (DeqOfDeqs::const_iterator it = Deq.begin(); it != Deq.end(); ++it) {
+		std::cout << (*it)[0] << " ";
+	}
+	std::cout << std::endl;
+}
+
 bool	PmergeMe::solve() {
 	char** agCopy = _ag;
-	struct timeval startT, endT;
+	struct timeval startTVec, endTVec, startTDeq, endTDeq;
 
-	gettimeofday(&startT, NULL);
+	gettimeofday(&startTDeq, NULL);
 	if (!PmergeMe::solveDeque(agCopy))
 		return false;
-	gettimeofday(&endT, NULL);
-	_timeDeq = elapsedTimeMicroSec(startT, endT);
+	gettimeofday(&endTDeq, NULL);
+	_timeDeq = elapsedTimeMicroSec(startTDeq, endTDeq);
 
-	gettimeofday(&startT, NULL);
+	gettimeofday(&startTVec, NULL);
 	if (!PmergeMe::solveVector(agCopy))
 		return false;
-	gettimeofday(&endT, NULL);
-	_timeDeq = elapsedTimeMicroSec(startT, endT);
+	gettimeofday(&endTVec, NULL);
+	_timeVec = elapsedTimeMicroSec(startTVec, endTVec);
 
 	return true;
 }
@@ -532,75 +546,33 @@ char**& PmergeMe::getAg() {
 int PmergeMe::getAc() {
 	return _ac;
 }
+long long PmergeMe::getTimeVec() const {
+	return _timeVec;
+}
+
+long long PmergeMe::getTimeDeq() const {
+	return _timeDeq;
+}
 
 /*
 ** --------------------------------- STREAM ---------------------------------
 */
 
-std::ostream &operator<<(std::ostream &o, PmergeMe const &i)
+std::ostream& operator<<(std::ostream &o, const PmergeMe &i)
 {
-	{
-	PmergeMe::VecOfVecs::const_iterator itv = i.getInitVec().begin();
-	o << "Vector init: {";
-	
-	while (itv != i.getInitVec().end()) {
-		PmergeMe::Vect::const_iterator inner_itv = itv->begin();
-		o << "{";
-		while (inner_itv != itv->end()) {
-			o << " " << *inner_itv << " ";
-			++inner_itv;
-		}
-		o << "}";
-		++itv;
-	}
-	o << "}";
-
-	PmergeMe::DeqOfDeqs::const_iterator itd = i.getInitDeq().begin();
-    o << "\n\nDeque init: {";
-
-    while (itd != i.getInitDeq().end()) {
-        PmergeMe::Dequ::const_iterator inner_itd = itd->begin();
-        o << "{";
-        while (inner_itd != itd->end()) {
-            o << " " << *inner_itd << " ";
-            ++inner_itd;
-        }
-        o << "}";
-        ++itd;
-    }
-    o << "}";
-	}
-	{
-	PmergeMe::VecOfVecs::const_iterator itv = i.getVecRet().begin();
-	o << "\nVector values: {";
-	
-	while (itv != i.getVecRet().end()) {
-		PmergeMe::Vect::const_iterator inner_itv = itv->begin();
-		o << "{";
-		while (inner_itv != itv->end()) {
-			o << " " << *inner_itv << " ";
-			++inner_itv;
-		}
-		o << "}";
-		++itv;
-	}
-	o << "}";
-
-	PmergeMe::DeqOfDeqs::const_iterator itd = i.getDeqRet().begin();
-    o << "\n\nDeque values: {";
-
-    while (itd != i.getDeqRet().end()) {
-        PmergeMe::Dequ::const_iterator inner_itd = itd->begin();
-        o << "{";
-        while (inner_itd != itd->end()) {
-            o << " " << *inner_itd << " ";
-            ++inner_itd;
-        }
-        o << "}";
-        ++itd;
-    }
-	}
-	return o;
+	o << "Unsorted Sequence:\nVector:" << std::endl;
+	i.printVec(i.getInitVec());
+	o << "Deque:" << std::endl;
+	i.printDeq(i.getInitDeq());
+	o << "---------------------------\nSorted Sequence:\nVector:" << std::endl;
+	i.printVec(i.getVecRet());
+	o << "Deque:" << std::endl;
+	i.printDeq(i.getDeqRet());
+	o << "---------------------------\nTime to process a range of "
+	<< i.getInitVec().size() << " with std::vector : " << i.getTimeVec() << std::endl;
+	o << "Time to process a range of "
+	<< i.getInitDeq().size() << " with std::deque : " << i.getTimeDeq() << std::endl;
+	return o;	
 }
 
 
